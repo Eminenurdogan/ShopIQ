@@ -1,0 +1,5 @@
+:root {
+  --shadow-elevation-raised: 0 10px 40px rgba(0, 0, 0, 0.06);
+  --shadow-card: var(--shadow-elevation-raised);
+  --shadow-popup: var(--shadow-elevation-raised);
+}

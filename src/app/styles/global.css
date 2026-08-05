@@ -12,12 +12,12 @@ html {
 }
 
 body {
-  min-width: 320px;
+  min-width: var(--breakpoint-mobile);
   min-height: 100svh;
   margin: 0;
-  background-color: var(--color-background);
+  background-color: var(--color-surface-page);
   color: var(--color-text-primary);
-  font-family: var(--font-family-body);
+  font-family: var(--font-role-body);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -102,7 +102,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-family-heading);
+  font-family: var(--font-role-heading);
 }
 
 form {
@@ -110,12 +110,12 @@ form {
 }
 
 ::selection {
-  background-color: var(--color-soft-rose);
+  background-color: var(--color-brand-hover);
   color: var(--color-text-primary);
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-rose-gold);
+  outline: var(--focus-ring-width) solid var(--color-focus-ring);
 }
 
 #root {
@@ -130,8 +130,8 @@ form {
   *,
   *::before,
   *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    animation-duration: var(--motion-duration-reduced) !important;
+    animation-iteration-count: var(--motion-iteration-reduced) !important;
+    transition-duration: var(--motion-duration-reduced) !important;
   }
 }

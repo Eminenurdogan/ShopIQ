@@ -1,0 +1,10 @@
+:root {
+  --font-family-heading: 'Plus Jakarta Sans', sans-serif;
+  --font-family-subheading: 'Manrope', sans-serif;
+  --font-family-body: 'Inter', sans-serif;
+
+  --font-role-heading: var(--font-family-heading);
+  --font-role-subheading: var(--font-family-subheading);
+  --font-role-body: var(--font-family-body);
+  --font-role-caption: var(--font-family-body);
+}

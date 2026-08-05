@@ -1,0 +1,37 @@
+:root {
+  --color-pink-primary: #f7c8d8;
+  --color-pink-soft: #f4b8c9;
+  --color-gold-rose: #c8925b;
+  --color-neutral-white: #ffffff;
+  --color-neutral-light-pink: #fdf3f6;
+  --color-neutral-background: #fff9fb;
+  --color-neutral-dark: #2b2b2b;
+  --color-neutral-muted: #6e6e73;
+  --color-neutral-border: #f1d7df;
+}
+
+:root,
+[data-theme='light'] {
+  --color-brand-primary: var(--color-pink-primary);
+  --color-brand-hover: var(--color-pink-soft);
+  --color-brand-accent: var(--color-gold-rose);
+  --color-surface-page: var(--color-neutral-background);
+  --color-surface-default: var(--color-neutral-white);
+  --color-surface-subtle: var(--color-neutral-light-pink);
+  --color-text-primary: var(--color-neutral-dark);
+  --color-text-secondary: var(--color-neutral-muted);
+  --color-border-default: var(--color-neutral-border);
+  --color-focus-ring: var(--color-brand-accent);
+  --focus-ring-width: 2px;
+
+  --gradient-primary: linear-gradient(
+    135deg,
+    var(--color-brand-primary),
+    var(--color-brand-hover)
+  );
+  --gradient-premium: linear-gradient(
+    135deg,
+    var(--color-brand-hover),
+    var(--color-brand-accent)
+  );
+}

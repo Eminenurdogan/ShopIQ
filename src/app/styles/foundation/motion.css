@@ -1,0 +1,10 @@
+:root {
+  --motion-duration-standard: 300ms;
+  --motion-duration-reduced: 0.01ms;
+  --motion-iteration-reduced: 1;
+  --motion-easing-standard: ease;
+  --motion-transition-standard: var(--motion-duration-standard)
+    var(--motion-easing-standard);
+  --motion-scale-hover: 1.02;
+  --motion-translate-card-hover: -6px;
+}
