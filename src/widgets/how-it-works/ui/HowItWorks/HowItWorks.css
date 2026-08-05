@@ -1,0 +1,90 @@
+.HowItWorks {
+  padding-block: var(--space-6);
+  background-color: var(--color-surface-subtle);
+}
+
+.HowItWorks__heading {
+  display: grid;
+  gap: var(--space-2);
+  max-inline-size: calc(var(--container-content-width) / 2);
+  margin-block-end: var(--space-4);
+}
+
+.HowItWorks__heading h2 {
+  font-size: var(--font-size-heading-3);
+  line-height: var(--line-height-heading);
+}
+
+.HowItWorks__heading p,
+.HowItWorks__step h3 {
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-body);
+}
+
+.HowItWorks__list {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.HowItWorks__item {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-2);
+}
+
+.HowItWorks__step {
+  display: grid;
+  inline-size: 100%;
+  justify-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border: var(--control-border-width) solid var(--color-border-default);
+  border-radius: var(--radius-card);
+  background-color: var(--color-surface-default);
+  text-align: center;
+}
+
+.HowItWorks__number {
+  display: inline-grid;
+  inline-size: var(--space-4);
+  block-size: var(--space-4);
+  place-items: center;
+  border-radius: var(--radius-large);
+  background: var(--gradient-primary);
+  color: var(--color-surface-default);
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-semibold);
+}
+
+.HowItWorks__step h3 {
+  font-family: var(--font-role-subheading);
+  font-size: var(--font-size-body-large);
+  font-weight: var(--font-weight-semibold);
+}
+
+.HowItWorks__arrow {
+  inline-size: var(--font-size-heading-4);
+  block-size: var(--font-size-heading-4);
+  color: var(--color-brand-accent);
+}
+
+@media (min-width: 1024px) {
+  .HowItWorks__list {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-3);
+  }
+
+  .HowItWorks__item {
+    position: relative;
+  }
+
+  .HowItWorks__arrow {
+    position: absolute;
+    inset-block-start: 50%;
+    inset-inline-end: calc(var(--space-3) * -1);
+    transform: translateY(-50%) rotate(-90deg);
+  }
+}

@@ -1,0 +1,65 @@
+.FeatureHighlights {
+  padding-block: var(--space-6);
+}
+
+.FeatureHighlights__heading,
+.FeatureHighlights__card {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.FeatureHighlights__heading {
+  max-inline-size: calc(var(--container-content-width) / 2);
+  margin-block-end: var(--space-4);
+}
+
+.FeatureHighlights__heading h2,
+.FeatureHighlights__card h3 {
+  line-height: var(--line-height-heading);
+}
+
+.FeatureHighlights__heading h2 {
+  font-size: var(--font-size-heading-3);
+}
+
+.FeatureHighlights__heading p,
+.FeatureHighlights__card p {
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-body);
+}
+
+.FeatureHighlights__grid {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.FeatureHighlights__card {
+  min-block-size: 100%;
+  padding: var(--space-3);
+  border: var(--control-border-width) solid var(--color-border-default);
+  border-radius: var(--radius-card);
+  background-color: var(--color-surface-default);
+  box-shadow: var(--shadow-card);
+}
+
+.FeatureHighlights__icon {
+  inline-size: var(--font-size-heading-3);
+  block-size: var(--font-size-heading-3);
+  color: var(--color-brand-accent);
+}
+
+.FeatureHighlights__card h3 {
+  font-size: var(--font-size-heading-4);
+}
+
+@media (min-width: 768px) {
+  .FeatureHighlights__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .FeatureHighlights__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

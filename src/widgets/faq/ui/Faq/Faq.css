@@ -1,0 +1,66 @@
+.Faq {
+  padding-block: var(--space-6);
+}
+
+.Faq__heading {
+  display: grid;
+  gap: var(--space-2);
+  max-inline-size: calc(var(--container-content-width) / 2);
+  margin-block-end: var(--space-4);
+}
+
+.Faq__heading h2 {
+  font-size: var(--font-size-heading-3);
+  line-height: var(--line-height-heading);
+}
+
+.Faq__heading p,
+.Faq__item p {
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-body);
+}
+
+.Faq__list {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.Faq__item {
+  padding: var(--space-3);
+  border: var(--control-border-width) solid var(--color-border-default);
+  border-radius: var(--radius-card);
+  background-color: var(--color-surface-default);
+}
+
+.Faq__item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  cursor: pointer;
+  font-family: var(--font-role-subheading);
+  font-size: var(--font-size-body-large);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-heading);
+  list-style: none;
+}
+
+.Faq__item summary::-webkit-details-marker {
+  display: none;
+}
+
+.Faq__icon {
+  flex: 0 0 auto;
+  inline-size: var(--font-size-heading-4);
+  block-size: var(--font-size-heading-4);
+  color: var(--color-brand-accent);
+  transition: transform var(--motion-transition-standard);
+}
+
+.Faq__item[open] .Faq__icon {
+  transform: rotate(180deg);
+}
+
+.Faq__item p {
+  margin-block-start: var(--space-2);
+}
