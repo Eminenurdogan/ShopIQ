@@ -7,4 +7,21 @@
   --font-role-subheading: var(--font-family-subheading);
   --font-role-body: var(--font-family-body);
   --font-role-caption: var(--font-family-body);
+
+  --font-size-display: 56px;
+  --font-size-heading-1: 48px;
+  --font-size-heading-2: 36px;
+  --font-size-heading-3: 30px;
+  --font-size-heading-4: 24px;
+  --font-size-body-large: 18px;
+  --font-size-body: 16px;
+  --font-size-small: 14px;
+  --font-size-caption: 12px;
+
+  --font-weight-semibold: 600;
+
+  --line-height-display: 1.2;
+  --line-height-heading: 1.25;
+  --line-height-body: 1.6;
+  --line-height-caption: 1.5;
 }

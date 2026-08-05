@@ -12,7 +12,6 @@ html {
 }
 
 body {
-  min-width: var(--breakpoint-mobile);
   min-height: 100svh;
   margin: 0;
   background-color: var(--color-surface-page);

@@ -1,10 +1,12 @@
 :root {
   --motion-duration-standard: 300ms;
+  --motion-duration-skeleton: 1.5s;
   --motion-duration-reduced: 0.01ms;
   --motion-iteration-reduced: 1;
   --motion-easing-standard: ease;
   --motion-transition-standard: var(--motion-duration-standard)
     var(--motion-easing-standard);
   --motion-scale-hover: 1.02;
+  --motion-scale-active: 0.98;
   --motion-translate-card-hover: -6px;
 }

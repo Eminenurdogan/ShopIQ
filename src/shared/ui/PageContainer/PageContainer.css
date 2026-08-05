@@ -1,0 +1,22 @@
+.PageContainer {
+  inline-size: 100%;
+  max-inline-size: var(--container-content-width);
+  margin-inline: auto;
+  padding-inline: var(--container-padding-mobile);
+}
+
+.PageContainer[data-width='wide'] {
+  max-inline-size: var(--container-max-width);
+}
+
+@media (min-width: 768px) {
+  .PageContainer {
+    padding-inline: var(--container-padding-tablet);
+  }
+}
+
+@media (min-width: 1024px) {
+  .PageContainer {
+    padding-inline: var(--container-padding-desktop);
+  }
+}

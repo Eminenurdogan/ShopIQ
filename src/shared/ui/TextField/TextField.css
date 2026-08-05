@@ -1,0 +1,63 @@
+.TextField {
+  display: grid;
+  gap: var(--space-1);
+  color: var(--color-text-primary);
+  font-family: var(--font-role-body);
+}
+
+.TextField__label {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-body);
+}
+
+.TextField__input {
+  inline-size: 100%;
+  min-block-size: var(--control-text-field-height);
+  padding-inline: var(--control-text-field-padding-inline);
+  border: var(--control-border-width) solid var(--color-border-default);
+  border-radius: var(--radius-button);
+  background-color: var(--color-surface-default);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  transition:
+    border-color var(--motion-transition-standard),
+    box-shadow var(--motion-transition-standard),
+    background-color var(--motion-transition-standard);
+}
+
+.TextField__input::placeholder {
+  color: var(--color-text-secondary);
+  opacity: 1;
+}
+
+.TextField__input:hover:not(:disabled) {
+  border-color: var(--color-brand-primary);
+}
+
+.TextField__input:focus {
+  border-color: var(--color-brand-accent);
+  outline: 0;
+  box-shadow: 0 0 0 var(--control-text-field-focus-ring-width)
+    var(--color-brand-hover);
+}
+
+.TextField--error .TextField__input {
+  border-color: var(--color-status-error-border);
+}
+
+.TextField--error .TextField__message {
+  color: var(--color-status-error-icon);
+}
+
+.TextField__input:disabled {
+  background-color: var(--color-surface-disabled);
+  color: var(--color-text-secondary);
+  cursor: not-allowed;
+}
+
+.TextField__message {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-caption);
+}

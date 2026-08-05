@@ -1,0 +1,48 @@
+.StatusMessage {
+  display: flex;
+  gap: var(--space-2);
+  align-items: flex-start;
+  padding: var(--space-2);
+  border: var(--control-border-width) solid var(--status-message-border);
+  border-radius: var(--radius-medium);
+  background-color: var(--status-message-background);
+  color: var(--color-text-primary);
+  font-family: var(--font-role-body);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+}
+
+.StatusMessage--success {
+  --status-message-background: var(--color-status-success-background);
+  --status-message-border: var(--color-status-success-border);
+  --status-message-icon: var(--color-status-success-icon);
+}
+
+.StatusMessage--info {
+  --status-message-background: var(--color-status-info-background);
+  --status-message-border: var(--color-status-info-border);
+  --status-message-icon: var(--color-status-info-icon);
+}
+
+.StatusMessage--warning {
+  --status-message-background: var(--color-status-warning-background);
+  --status-message-border: var(--color-status-warning-border);
+  --status-message-icon: var(--color-status-warning-icon);
+}
+
+.StatusMessage--error {
+  --status-message-background: var(--color-status-error-background);
+  --status-message-border: var(--color-status-error-border);
+  --status-message-icon: var(--color-status-error-icon);
+}
+
+.StatusMessage__icon {
+  flex: 0 0 auto;
+  inline-size: var(--font-size-body-large);
+  block-size: var(--font-size-body-large);
+  color: var(--status-message-icon);
+}
+
+.StatusMessage__content {
+  min-inline-size: 0;
+}

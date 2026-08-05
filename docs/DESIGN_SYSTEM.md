@@ -1,411 +1,408 @@
-# 🎨 ShopIQ Design System
+---
+# UI Specification
 
-> ShopIQ Frontend Tasarım Rehberi
-> Version 1.0
+Bu bölüm, ShopIQ'da geliştirilecek tüm ortak UI bileşenlerinin davranış standartlarını tanımlar.
 
+Her component bu kurallara uymalıdır.
 ---
 
-# Marka Kimliği
+# Button
 
-ShopIQ, kullanıcıların farklı mağazalardaki ürün fiyatlarını karşılaştırmasını, favorilerine eklemesini ve fiyat düştüğünde bildirim almasını sağlayan modern bir alışveriş platformudur.
+## Variants
 
-Marka kimliği;
+### Primary
 
-- Premium
-- Modern
-- Minimal
-- Zarif
-- Güvenilir
-- Kadın-erkek herkese hitap eden
-- Lüks alışveriş deneyimi
+- Background: Primary Gradient
+- Text: White
+- Border: None
+- Radius: 18px
+- Height: 48px
+- Padding: 0 24px
+- Font Weight: 600
 
-hissi vermelidir.
-
-Site hiçbir zaman klasik e-ticaret sitesi gibi görünmemelidir.
-
----
-
-# Logo
-
-Logo;
-
-- Premium alışveriş poşetleri
-- Rose Gold saplar
-- Soft pembe tonları
-- Minimal çizgiler
-- Luxury shopping hissi
-
-temsil eder.
-
-Logo tüm tasarım dilinin temelini oluşturur.
-
----
-
-# Tasarım Felsefesi
-
-ShopIQ;
-
-Apple,
-Notion,
-Stripe,
-Linear,
-Airbnb
-
-gibi sade ve modern görünmelidir.
-
-Karmaşık tasarımlardan kaçınılacaktır.
-
-Bol beyaz alan kullanılacaktır.
-
----
-
-# Ana Renk Paleti
-
-## Primary Pink
-
-#F7C8D8
-
-Ana marka rengi.
-
----
-
-## Soft Rose
-
-#F4B8C9
-
-Hover efektleri.
-
----
-
-## Rose Gold
-
-#C8925B
-
-Logo detayları
-
-Buton kenarlıkları
-
-Premium badge
-
-İkon detayları
-
-Border efektleri
-
-Gradient geçişleri
-
----
-
-## Light Pink
-
-#FDF3F6
-
-Arka plan kartları.
-
----
-
-## White
-
-#FFFFFF
-
-Ana arkaplan.
-
----
-
-## Background
-
-#FFF9FB
-
-Sayfa zemini.
-
----
-
-## Dark Text
-
-#2B2B2B
-
-Başlıklar.
-
----
-
-## Secondary Text
-
-#6E6E73
-
-Açıklamalar.
-
----
-
-## Border
-
-#F1D7DF
-
-İnce borderlar.
-
----
-
-# Gradientler
-
-## Primary
-
-linear-gradient(
-135deg,
-#F7C8D8,
-#F4B8C9
-)
-
----
-
-## Premium
-
-linear-gradient(
-135deg,
-#F4B8C9,
-#C8925B
-)
-
----
-
-# Butonlar
-
-Primary Button
-
-Background
-
-Pink Gradient
+States
 
 Hover
 
-Rose Gold Glow
+- Scale: 1.02
+- Shadow artırılır.
 
-Border
+Active
 
-Rose Gold
+- Scale: 0.98
+
+Disabled
+
+- Opacity: .5
+- Cursor: not-allowed
+
+Loading
+
+- Spinner gösterilir.
+- Boyut değişmez.
+
+---
+
+### Secondary
+
+- White Background
+- 1px Border
+- Border Color
+- Dark Text
+
+Hover
+
+- Light Pink Background
+
+---
+
+### Outline
+
+- Transparent Background
+- Primary Border
+- Primary Text
+
+Hover
+
+- Light Pink Background
+
+---
+
+### Ghost
+
+- Transparent
+- Border Yok
+- Dark Text
+
+Hover
+
+- Light Pink
+
+---
+
+# TextField
+
+Height
+
+52px
 
 Radius
 
 18px
 
-Shadow
+Padding
 
-Soft Pink Shadow
-
----
-
-Secondary Button
-
-White
-
-Rose Gold Border
-
-Hover
-
-Light Pink
-
----
-
-# Kartlar
-
-Radius
-
-24px
+16px
 
 Border
 
-1px Solid Pink
+Border Color
 
-Background
+States
 
-White
+Default
 
-Shadow
-
-0 10px 40px rgba(0,0,0,.06)
+Border Color
 
 Hover
 
-Yukarı hafif kalkmalı.
+Primary Pink
+
+Focus
+
+Rose Gold Border
+
+3px Soft Pink Focus Ring
+
+Error
+
+Danger Border
+
+Danger Helper Text
+
+Disabled
+
+Gray Background
+
+Placeholder
+
+Secondary Text
 
 ---
 
-# İkonlar
+# Page Container
 
-İkonlar;
+Content Width
 
-- Rounded
-- Modern
-- İnce çizgili
+1200px
 
-olmalıdır.
+Max Width
 
-Tercih:
+1280px
 
-Lucide React
+Padding
 
----
-
-# Fontlar
-
-Başlık
-
-Plus Jakarta Sans
-
-Alt Başlık
-
-Manrope
-
-İçerik
-
-Inter
-
----
-
-# Border Radius
-
-Small
-
-12px
-
-Medium
+Mobile
 
 20px
 
-Large
+Tablet
 
-28px
+32px
 
-Extra Large
+Desktop
 
-40px
-
----
-
-# Spacing
-
-8
-
-16
-
-24
-
-32
-
-48
-
-64
-
-96
-
-tasarım sistemi kullanılacaktır.
+48px
 
 ---
 
-# Animasyonlar
+# Status Message
 
-Geçişler
+## Success
 
-300ms
+Background
 
-Hover
+#EEF9F1
 
-Scale(1.02)
+Border
 
-Kart
+#A6E3B5
 
-TranslateY(-6px)
+Icon
+
+Green
+
+---
+
+## Info
+
+Background
+
+#EEF6FF
+
+Border
+
+#B8D8FF
+
+Icon
+
+Blue
+
+---
+
+## Warning
+
+Background
+
+#FFF8EA
+
+Border
+
+#FFD27A
+
+Icon
+
+Orange
+
+---
+
+## Error
+
+Background
+
+#FFF1F2
+
+Border
+
+#F7B4BC
+
+Icon
+
+Red
+
+---
+
+# Skeleton
+
+Animation
+
+Shimmer
+
+Duration
+
+1.5s
+
+Radius
+
+Text
+
+8px
 
 Button
 
-Glow Effect
+18px
+
+Card
+
+24px
 
 ---
 
-# Sayfa Yapısı
+# Typography Scale
 
-Navbar
+Display
 
-↓
+56px
 
-Hero
+H1
 
-↓
+48px
 
-Arama Alanı
+H2
 
-↓
+36px
 
-Öne Çıkan Özellikler
+H3
 
-↓
+30px
 
-Nasıl Çalışır?
+H4
 
-↓
+24px
 
-Avantajlar
+Body Large
 
-↓
+18px
 
-Mağaza Logoları
+Body
 
-↓
+16px
 
-SSS
+Small
 
-↓
+14px
 
-Footer
+Caption
 
----
+12px
 
-# Bileşen Tasarım Kuralları
+Line Height
 
-Tüm componentler;
+Display
 
-- Reusable
-- Responsive
-- Atomic Design mantığında
-- Dark Mode'a hazır
-- Accessible
-- Mobile First
+120%
 
-şeklinde geliştirilecektir.
+Heading
 
----
+125%
 
-# Kullanılacak Teknolojiler
+Body
 
-React
+160%
 
-Vite
+Caption
 
-React Router
-
-Axios
-
-Lucide React
-
-Framer Motion
-
-React Hook Form
-
-Zod
+150%
 
 ---
 
-# Tasarım İlkesi
+# Breakpoints
 
-Bir kullanıcı ShopIQ'ya ilk girdiğinde;
+Mobile
 
-"Bu site kaliteli."
+0 - 767
 
-"Burası güvenilir."
+Tablet
 
-"Burada alışveriş yapmak kolay."
+768 - 1023
 
-"Burası premium."
+Laptop
 
-hissini yaşamalıdır.
+1024 - 1279
 
-Hiçbir sayfa eski moda görünmemelidir.
+Desktop
 
-Minimalizm ve premium hissi her zaman ön planda tutulacaktır.
+1280+
+
+---
+
+# Z-Index
+
+Dropdown
+
+100
+
+Sticky Header
+
+200
+
+Drawer
+
+300
+
+Modal
+
+500
+
+Toast
+
+800
+
+Loading
+
+1000
+
+---
+
+# Accessibility
+
+- Tüm componentler keyboard ile kullanılabilir olmalıdır.
+- focus-visible zorunludur.
+- Renk tek başına anlam ifade etmemelidir.
+- Icon kullanılan her buton aria-label almalıdır.
+- Form alanlarının label'ı bulunmalıdır.
+
+---
+
+# Component Rules
+
+Her component;
+
+- Reusable olmalıdır.
+- Responsive olmalıdır.
+- Theme Token kullanmalıdır.
+- Hardcoded renk kullanmamalıdır.
+- Hardcoded spacing kullanmamalıdır.
+- Inline style kullanılmamalıdır.
+- Semantic HTML kullanılmalıdır.
+- Magic number kullanılmamalıdır.
+- CSS Variables kullanılmalıdır.
+- Dark Mode desteğine uygun geliştirilmelidir.
+
+# Card
+
+## Default
+
+- Background: White
+- Border: 1px solid Border
+- Radius: 24px
+- Padding: 24px
+- Shadow: Default Shadow
+
+Hover
+
+- TranslateY(-6px)
+- Shadow artırılır.
+
+Variants
+
+- Default
+- Elevated
+- Flat
+- Interactive
+
+Interactive Card
+
+- Cursor: Pointer
+- Hover efekti aktif
+- Focus-visible desteği zorunlu

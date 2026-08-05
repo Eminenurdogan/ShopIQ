@@ -1,0 +1,42 @@
+.Skeleton {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  inline-size: 100%;
+  background-color: var(--color-skeleton-base);
+}
+
+.Skeleton::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-skeleton-highlight),
+    transparent
+  );
+  content: '';
+  transform: translateX(-100%);
+  animation: Skeleton-shimmer var(--motion-duration-skeleton) linear infinite;
+}
+
+.Skeleton--text {
+  min-block-size: var(--skeleton-text-height);
+  border-radius: var(--radius-skeleton-text);
+}
+
+.Skeleton--button {
+  min-block-size: var(--skeleton-button-height);
+  border-radius: var(--radius-button);
+}
+
+.Skeleton--card {
+  min-block-size: var(--skeleton-card-min-height);
+  border-radius: var(--radius-card);
+}
+
+@keyframes Skeleton-shimmer {
+  to {
+    transform: translateX(100%);
+  }
+}

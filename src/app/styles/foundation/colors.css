@@ -8,6 +8,14 @@
   --color-neutral-dark: #2b2b2b;
   --color-neutral-muted: #6e6e73;
   --color-neutral-border: #f1d7df;
+  --color-status-success-background-base: #eef9f1;
+  --color-status-success-border-base: #a6e3b5;
+  --color-status-info-background-base: #eef6ff;
+  --color-status-info-border-base: #b8d8ff;
+  --color-status-warning-background-base: #fff8ea;
+  --color-status-warning-border-base: #ffd27a;
+  --color-status-error-background-base: #fff1f2;
+  --color-status-error-border-base: #f7b4bc;
 }
 
 :root,
@@ -22,6 +30,45 @@
   --color-text-secondary: var(--color-neutral-muted);
   --color-border-default: var(--color-neutral-border);
   --color-focus-ring: var(--color-brand-accent);
+  --color-surface-disabled: color-mix(
+    in srgb,
+    var(--color-text-secondary) 10%,
+    var(--color-surface-default)
+  );
+  --color-skeleton-base: color-mix(
+    in srgb,
+    var(--color-surface-subtle) 80%,
+    var(--color-surface-default)
+  );
+  --color-skeleton-highlight: var(--color-surface-default);
+  --color-status-success-background: var(--color-status-success-background-base);
+  --color-status-success-border: var(--color-status-success-border-base);
+  --color-status-success-icon: color-mix(
+    in srgb,
+    var(--color-status-success-border) 60%,
+    var(--color-text-primary)
+  );
+  --color-status-info-background: var(--color-status-info-background-base);
+  --color-status-info-border: var(--color-status-info-border-base);
+  --color-status-info-icon: color-mix(
+    in srgb,
+    var(--color-status-info-border) 60%,
+    var(--color-text-primary)
+  );
+  --color-status-warning-background: var(--color-status-warning-background-base);
+  --color-status-warning-border: var(--color-status-warning-border-base);
+  --color-status-warning-icon: color-mix(
+    in srgb,
+    var(--color-status-warning-border) 60%,
+    var(--color-text-primary)
+  );
+  --color-status-error-background: var(--color-status-error-background-base);
+  --color-status-error-border: var(--color-status-error-border-base);
+  --color-status-error-icon: color-mix(
+    in srgb,
+    var(--color-status-error-border) 60%,
+    var(--color-text-primary)
+  );
   --focus-ring-width: 2px;
 
   --gradient-primary: linear-gradient(
