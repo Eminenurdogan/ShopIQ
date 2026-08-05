@@ -1,0 +1,47 @@
+:root {
+  --color-primary-pink: #f7c8d8;
+  --color-soft-rose: #f4b8c9;
+  --color-rose-gold: #c8925b;
+  --color-light-pink: #fdf3f6;
+  --color-white: #ffffff;
+  --color-background: #fff9fb;
+  --color-text-primary: #2b2b2b;
+  --color-text-secondary: #6e6e73;
+  --color-border: #f1d7df;
+
+  --gradient-primary: linear-gradient(
+    135deg,
+    var(--color-primary-pink),
+    var(--color-soft-rose)
+  );
+  --gradient-premium: linear-gradient(
+    135deg,
+    var(--color-soft-rose),
+    var(--color-rose-gold)
+  );
+
+  --font-family-heading: 'Plus Jakarta Sans', sans-serif;
+  --font-family-subheading: 'Manrope', sans-serif;
+  --font-family-body: 'Inter', sans-serif;
+
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 48px;
+  --space-6: 64px;
+  --space-7: 96px;
+
+  --radius-small: 12px;
+  --radius-button: 18px;
+  --radius-medium: 20px;
+  --radius-large: 28px;
+  --radius-extra-large: 40px;
+
+  --shadow-card: 0 10px 40px rgba(0, 0, 0, 0.06);
+
+  --transition-duration-base: 300ms;
+  --transition-timing-function-base: ease;
+  --transition-base: var(--transition-duration-base)
+    var(--transition-timing-function-base);
+}
