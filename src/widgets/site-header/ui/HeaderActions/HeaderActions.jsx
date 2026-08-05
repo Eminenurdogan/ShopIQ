@@ -10,7 +10,7 @@ export function HeaderActions() {
   return (
     <div className="HeaderActions">
       <Button icon={<ArrowRight />} onClick={() => navigate(APP_ROUTES.COMPARE)}>
-        Ürün Karşılaştır
+        AI Analiz Başlat
       </Button>
     </div>
   )

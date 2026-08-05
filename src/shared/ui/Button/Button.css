@@ -39,7 +39,7 @@
 }
 
 .Button--primary {
-  background: var(--gradient-primary);
+  background: var(--gradient-premium);
   color: var(--color-surface-default);
 }
 
@@ -63,7 +63,7 @@
 }
 
 .Button--primary:not(:disabled):hover {
-  background: var(--gradient-primary);
+  background: var(--gradient-premium);
   box-shadow: var(--shadow-popup);
   transform: scale(var(--motion-scale-hover));
 }
