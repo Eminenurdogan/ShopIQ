@@ -121,6 +121,10 @@ form {
   min-height: 100svh;
 }
 
+body.is-navigation-open {
+  overflow: hidden;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

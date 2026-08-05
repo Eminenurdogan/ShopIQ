@@ -1,0 +1,8 @@
+.HeaderActions {
+  display: inline-flex;
+  flex: 0 0 auto;
+}
+
+.HeaderActions .Button {
+  white-space: nowrap;
+}
