@@ -1,4 +1,5 @@
 import { motion, useReducedMotion } from 'framer-motion'
+import { ProductLinkForm } from '../../../../features/product-link-search/index.js'
 import { PageContainer } from '../../../../shared/ui/index.js'
 import './Hero.css'
 
@@ -23,13 +24,7 @@ export function Hero() {
             Ürün bağlantısını paylaş, farklı mağazalardaki fiyatları tek ekranda
             karşılaştır.
           </p>
-          <div
-            aria-label="Ürün bağlantısı formu yakında eklenecek"
-            className="Hero__formPlaceholder"
-            role="status"
-          >
-            Ürün bağlantısı alanı yakında burada yer alacak.
-          </div>
+          <ProductLinkForm />
         </motion.div>
       </PageContainer>
     </section>
