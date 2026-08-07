@@ -1,14 +1,14 @@
 :root {
   --control-border-width: 1px;
-  --control-button-height: 48px;
+  --control-button-height: 56px;
   --control-button-padding-inline: var(--space-3);
-  --control-text-field-height: 52px;
+  --control-text-field-height: 64px;
   --control-text-field-padding-inline: var(--space-2);
   --control-text-field-focus-ring-width: 3px;
   --control-disabled-opacity: 0.5;
 
-  --container-content-width: 1200px;
-  --container-max-width: 1280px;
+  --container-content-width: 1520px;
+  --container-max-width: 1600px;
   --container-padding-mobile: 20px;
   --container-padding-tablet: var(--space-4);
   --container-padding-desktop: var(--space-5);

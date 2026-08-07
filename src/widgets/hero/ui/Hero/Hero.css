@@ -1,6 +1,7 @@
 .Hero {
   overflow: hidden;
-  padding-block: var(--space-6);
+  min-block-size: 90svh;
+  padding-block: var(--space-7);
 }
 
 .Hero__content {
@@ -9,7 +10,7 @@
   align-items: center;
 }
 
-.Hero__copy { display: grid; gap: var(--space-3); }
+.Hero__copy { display: grid; gap: var(--space-4); }
 .Hero__eyebrow { color: var(--color-brand-accent); font-family: var(--font-role-subheading); font-size: var(--font-size-body); font-weight: var(--font-weight-semibold); }
 
 .Hero__title {
@@ -23,9 +24,9 @@
   line-height: var(--line-height-body);
 }
 
-.Hero__visual { position: relative; display: grid; min-block-size: calc(var(--space-7) * 3); place-items: center; }
+.Hero__visual { position: relative; display: grid; min-block-size: calc(var(--space-7) * 5); place-items: center; }
 .Hero__visualGlow { position: absolute; inline-size: 100%; block-size: 100%; border-radius: var(--radius-extra-large); background: var(--gradient-primary); box-shadow: var(--shadow-popup); }
-.Hero__logo { position: relative; inline-size: min(100%, calc(var(--space-7) * 3)); block-size: auto; }
+.Hero__logo { position: relative; inline-size: min(100%, calc(var(--space-7) * 5)); block-size: auto; }
 .Hero__insight { position: absolute; z-index: var(--z-index-dropdown); padding: var(--space-2); border: var(--control-border-width) solid var(--color-border-default); border-radius: var(--radius-medium); background-color: var(--color-surface-default); box-shadow: var(--shadow-card); color: var(--color-text-primary); font-family: var(--font-role-subheading); font-size: var(--font-size-small); font-weight: var(--font-weight-semibold); }
 .Hero__insight--top { inset-block-start: var(--space-2); inset-inline-end: var(--space-1); }
 .Hero__insight--bottom { inset-block-end: var(--space-2); inset-inline-start: var(--space-1); }

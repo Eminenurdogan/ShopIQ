@@ -5,4 +5,5 @@
 
 .HeaderActions .Button {
   white-space: nowrap;
+  box-shadow: var(--shadow-popup);
 }
