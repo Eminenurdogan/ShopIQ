@@ -8,15 +8,15 @@
   --font-role-body: var(--font-family-body);
   --font-role-caption: var(--font-family-body);
 
-  --font-size-display: 72px;
-  --font-size-heading-1: 64px;
-  --font-size-heading-2: 44px;
-  --font-size-heading-3: 36px;
-  --font-size-heading-4: 28px;
-  --font-size-body-large: 22px;
-  --font-size-body: 18px;
-  --font-size-small: 16px;
-  --font-size-caption: 14px;
+  --font-size-display: 80px;
+  --font-size-heading-1: 72px;
+  --font-size-heading-2: 48px;
+  --font-size-heading-3: 40px;
+  --font-size-heading-4: 30px;
+  --font-size-body-large: 26px;
+  --font-size-body: 22px;
+  --font-size-small: 20px;
+  --font-size-caption: 18px;
 
   --font-weight-semibold: 600;
 

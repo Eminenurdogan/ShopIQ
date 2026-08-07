@@ -4,13 +4,18 @@
   gap: var(--space-1);
   color: var(--color-text-primary);
   font-family: var(--font-role-heading);
-  font-size: var(--font-size-heading-4);
+  font-size: var(--font-size-heading-3);
   font-weight: var(--font-weight-semibold);
   line-height: var(--line-height-heading);
 }
 
 .BrandLogo__image {
-  inline-size: var(--space-4);
-  block-size: var(--space-4);
+  inline-size: var(--space-5);
+  block-size: var(--space-5);
   object-fit: cover;
+}
+
+@media (min-width: 1024px) {
+  .BrandLogo { font-size: var(--font-size-heading-2); }
+  .BrandLogo__image { inline-size: var(--space-7); block-size: var(--space-7); }
 }

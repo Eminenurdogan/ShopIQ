@@ -7,11 +7,11 @@
   --control-text-field-focus-ring-width: 3px;
   --control-disabled-opacity: 0.5;
 
-  --container-content-width: 1520px;
-  --container-max-width: 1600px;
+  --container-content-width: 1840px;
+  --container-max-width: 1920px;
   --container-padding-mobile: 20px;
   --container-padding-tablet: var(--space-4);
-  --container-padding-desktop: var(--space-5);
+  --container-padding-desktop: var(--space-4);
 
   --skeleton-text-height: var(--font-size-body);
   --skeleton-button-height: var(--control-button-height);
