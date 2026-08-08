@@ -40,7 +40,7 @@
 
 .Button--primary {
   background: var(--gradient-premium);
-  color: var(--color-surface-default);
+  color: var(--color-text-primary);
 }
 
 .Button--secondary {

@@ -6,7 +6,7 @@ const placeholderStores = ['Mağaza', 'Mağaza', 'Mağaza', 'Mağaza']
 
 export function StoreShowcase() {
   return (
-    <section aria-labelledby="store-showcase-title" className="StoreShowcase">
+    <section aria-labelledby="store-showcase-title" className="StoreShowcase" id="platform">
       <PageContainer>
         <div className="StoreShowcase__heading">
           <h2 id="store-showcase-title">Yakında desteklenecek mağazalar</h2>

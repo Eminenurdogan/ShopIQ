@@ -27,7 +27,7 @@ const highlights = [
 
 export function FeatureHighlights() {
   return (
-    <section aria-labelledby="feature-highlights-title" className="FeatureHighlights">
+    <section aria-labelledby="feature-highlights-title" className="FeatureHighlights" id="features">
       <PageContainer>
         <div className="FeatureHighlights__heading">
           <h2 id="feature-highlights-title">Daha sade bir alışveriş deneyimi</h2>

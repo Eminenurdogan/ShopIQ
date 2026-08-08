@@ -35,7 +35,7 @@ export function ProductLinkForm() {
           error={errorMessage}
           registration={register('productLink')}
         />
-        <Button type="submit">Karşılaştır</Button>
+        <Button type="submit">Ürünü Analiz Et</Button>
       </div>
       {errorMessage ? (
         <StatusMessage type="error">{errorMessage}</StatusMessage>

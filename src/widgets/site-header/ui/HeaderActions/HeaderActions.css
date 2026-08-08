@@ -7,7 +7,7 @@
   white-space: nowrap;
   background: var(--gradient-primary);
   box-shadow: var(--shadow-popup);
-  color: var(--color-surface-default);
+  color: var(--color-text-primary);
 }
 
 .HeaderActions .Button:hover {

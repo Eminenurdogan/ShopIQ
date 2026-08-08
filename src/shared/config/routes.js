@@ -4,4 +4,5 @@ export const APP_ROUTES = {
   TRACKING: '/tracking',
   COMPARISON: '/comparison',
   ASSISTANT: '/assistant',
+  DASHBOARD: '/dashboard',
 }

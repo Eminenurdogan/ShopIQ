@@ -22,6 +22,7 @@ export const router = createBrowserRouter([
       { path: APP_ROUTES.TRACKING, element: <TrackingPage /> },
       { path: APP_ROUTES.COMPARISON, element: <ComparisonPage /> },
       { path: APP_ROUTES.ASSISTANT, element: <AssistantPage /> },
+      { path: APP_ROUTES.DASHBOARD, element: <TrackingPage /> },
     ],
   },
 ])

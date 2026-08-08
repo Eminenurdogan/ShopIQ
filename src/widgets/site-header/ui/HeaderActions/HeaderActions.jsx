@@ -9,8 +9,8 @@ export function HeaderActions() {
 
   return (
     <div className="HeaderActions">
-      <Button icon={<ArrowRight />} onClick={() => navigate(`${APP_ROUTES.HOME}#product-link-form`)}>
-        Ürün Takibine Başla
+      <Button icon={<ArrowRight />} onClick={() => navigate(APP_ROUTES.DASHBOARD)}>
+        Kullanmaya Başla
       </Button>
     </div>
   )

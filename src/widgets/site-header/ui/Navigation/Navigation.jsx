@@ -1,13 +1,11 @@
 import { NavLink, useLocation } from 'react-router-dom'
-import { APP_ROUTES } from '../../../../shared/config/index.js'
 import './Navigation.css'
 
 const navigationItems = [
-  { label: 'Takiplerim', to: APP_ROUTES.TRACKING, type: 'route' },
-  { label: 'Karşılaştır', to: APP_ROUTES.COMPARISON, type: 'route' },
-  { label: 'Akıllı Öneriler', to: APP_ROUTES.ASSISTANT, type: 'route' },
+  { label: 'Özellikler', to: '#features', type: 'anchor' },
   { label: 'Nasıl Çalışır?', to: '#how-it-works', type: 'anchor' },
-  { label: 'SSS', to: '#faq', type: 'anchor' },
+  { label: 'Platform', to: '#platform', type: 'anchor' },
+  { label: 'Merak Ettikleriniz', to: '#faq', type: 'anchor' },
 ]
 
 export function Navigation({ onNavigate, variant = 'desktop' }) {
