@@ -2,6 +2,9 @@ import { createBrowserRouter } from 'react-router-dom'
 import App from '../../App.jsx'
 import { ComparePage } from '../../pages/compare/ComparePage.jsx'
 import { HomePage } from '../../pages/home/HomePage.jsx'
+import { TrackingPage } from '../../pages/tracking/TrackingPage.jsx'
+import { ComparisonPage } from '../../pages/comparison/ComparisonPage.jsx'
+import { AssistantPage } from '../../pages/assistant/AssistantPage.jsx'
 import { APP_ROUTES } from '../../shared/config/index.js'
 
 export const router = createBrowserRouter([
@@ -16,6 +19,9 @@ export const router = createBrowserRouter([
         path: APP_ROUTES.COMPARE,
         element: <ComparePage />,
       },
+      { path: APP_ROUTES.TRACKING, element: <TrackingPage /> },
+      { path: APP_ROUTES.COMPARISON, element: <ComparisonPage /> },
+      { path: APP_ROUTES.ASSISTANT, element: <AssistantPage /> },
     ],
   },
 ])

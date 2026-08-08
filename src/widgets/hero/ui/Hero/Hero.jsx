@@ -24,7 +24,7 @@ export function Hero() {
             <p className="Hero__description">
               Tek linkle fiyatı, satıcı güvenini, kargoyu ve kampanyaları birlikte analiz et. Fiyat geçmişi sinyalleri ve akıllı önerilerle sana uygun teklifi tek ekranda değerlendir.
             </p>
-            <ProductLinkForm />
+            <div id="product-link-form"><ProductLinkForm /></div>
           </div>
           <div className="Hero__visual" aria-hidden="true">
             <div className="Hero__visualGlow" />

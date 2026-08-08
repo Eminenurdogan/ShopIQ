@@ -1,0 +1,3 @@
+import { DashboardOverview } from '../../widgets/dashboard-overview/DashboardOverview.jsx'
+const items=[{label:'Satın alma önerisi',title:'Şimdi almak mantıklı mı?',detail:'Fiyat ve kampanya sinyallerini birlikte değerlendir.'},{label:'Alternatifler',title:'Daha uygun seçenekler',detail:'İhtiyacına göre benzer ürünleri karşılaştır.'},{label:'Akıllı içgörü',title:'Kararını destekle',detail:'AI, alışveriş araştırmanı güçlendiren yardımcı katmandır.'}]
+export function AssistantPage(){return <DashboardOverview title="Akıllı Öneriler" description="Kararını destekleyen kişisel alışveriş içgörüleri." items={items}/>}
