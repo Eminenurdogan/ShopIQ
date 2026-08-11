@@ -48,6 +48,7 @@
 .ComparisonPage__search,
 .ComparisonPage__summary,
 .ComparisonPage__bestOffer,
+.ComparisonPage__history,
 .ComparisonPage__offers {
   margin-block-end: var(--space-5);
 }
@@ -55,6 +56,7 @@
 .ComparisonPage__search,
 .ComparisonPage__summary,
 .ComparisonPage__bestOffer,
+.ComparisonPage__history,
 .ComparisonPage__offer {
   border: var(--control-border-width) solid var(--color-border-default);
   border-radius: var(--radius-card);
@@ -65,6 +67,7 @@
 .ComparisonPage__search,
 .ComparisonPage__summary,
 .ComparisonPage__bestOffer,
+.ComparisonPage__history,
 .ComparisonPage__offer {
   padding: var(--space-3);
 }
@@ -72,11 +75,12 @@
 .ComparisonPage__search,
 .ComparisonPage__summary,
 .ComparisonPage__bestOffer,
+.ComparisonPage__history,
 .ComparisonPage__offer,
 .ComparisonPage__summaryInfo,
 .ComparisonPage__bestOfferInfo,
 .ComparisonPage__offerHeader,
-.ComparisonPage__offerDetails,
+.ComparisonPage__costBreakdown,
 .ComparisonPage__offersGrid {
   display: grid;
   gap: var(--space-3);
@@ -151,6 +155,57 @@
   color: var(--color-brand-accent);
 }
 
+.ComparisonPage__history {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.ComparisonPage__chart {
+  display: grid;
+  gap: var(--space-2);
+  color: var(--color-brand-accent);
+}
+
+.ComparisonPage__chartValues {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.ComparisonPage__chartValues span,
+.ComparisonPage__chartMeta span {
+  color: var(--color-text-secondary);
+}
+
+.ComparisonPage__chartValues strong,
+.ComparisonPage__chartMeta strong {
+  color: var(--color-text-primary);
+  font-size: var(--font-size-heading-4);
+}
+
+.ComparisonPage__chart svg {
+  display: block;
+  inline-size: 100%;
+  block-size: var(--space-6);
+  overflow: visible;
+}
+
+.ComparisonPage__chart polyline {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: var(--control-border-width);
+}
+
+.ComparisonPage__chartMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
 .ComparisonPage__offers {
   display: grid;
   gap: var(--space-3);
@@ -162,6 +217,57 @@
 
 .ComparisonPage__sectionHeading > svg {
   color: var(--color-brand-accent);
+}
+
+.ComparisonPage__controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.ComparisonPage__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+.ComparisonPage__filters button,
+.ComparisonPage__sort select {
+  border: var(--control-border-width) solid var(--color-border-default);
+  border-radius: var(--radius-button);
+  background-color: var(--color-surface-default);
+  color: var(--color-text-secondary);
+  font: inherit;
+  padding: var(--space-1) var(--space-2);
+  transition:
+    border-color var(--motion-transition-standard),
+    color var(--motion-transition-standard),
+    background-color var(--motion-transition-standard);
+}
+
+.ComparisonPage__filters button[aria-pressed='true'] {
+  border-color: var(--color-brand-accent);
+  background-color: var(--color-surface-subtle);
+  color: var(--color-text-primary);
+}
+
+.ComparisonPage__filters button:hover,
+.ComparisonPage__sort select:hover {
+  border-color: var(--color-brand-accent);
+  color: var(--color-text-primary);
+}
+
+.ComparisonPage__filters button:focus-visible,
+.ComparisonPage__sort select:focus-visible {
+  outline: var(--focus-ring-width) solid var(--color-focus-ring);
+}
+
+.ComparisonPage__sort {
+  display: grid;
+  gap: var(--space-1);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-small);
 }
 
 .ComparisonPage__offersGrid {
@@ -196,23 +302,31 @@
 }
 
 .ComparisonPage__offerMeta,
-.ComparisonPage__offerDetails {
+.ComparisonPage__costBreakdown {
   font-size: var(--font-size-small);
 }
 
-.ComparisonPage__offerDetails {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+.ComparisonPage__costBreakdown {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto;
+  align-items: end;
+  gap: var(--space-1);
   padding-block: var(--space-2);
   border-block: var(--control-border-width) solid var(--color-border-default);
 }
 
-.ComparisonPage__offerDetails div {
+.ComparisonPage__costBreakdown div {
   display: grid;
   gap: var(--space-1);
 }
 
-.ComparisonPage__offerDetails strong {
+.ComparisonPage__costBreakdown strong {
   color: var(--color-text-primary);
+}
+
+.ComparisonPage__costBreakdown > span {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-heading-4);
 }
 
 .ComparisonPage__total {
@@ -243,9 +357,41 @@
   flex: 0 0 auto;
 }
 
+.ComparisonPage__state,
+.ComparisonPage__stateCards {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.ComparisonPage__state {
+  margin-block-end: var(--space-5);
+}
+
+.ComparisonPage__empty {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: var(--control-border-width) solid var(--color-border-default);
+  border-radius: var(--radius-card);
+  background-color: var(--color-surface-default);
+  box-shadow: var(--shadow-card);
+}
+
+.ComparisonPage__empty > svg {
+  color: var(--color-brand-accent);
+}
+
+.ComparisonPage__empty > div {
+  display: grid;
+  gap: var(--space-1);
+}
+
 @media (min-width: 768px) {
   .ComparisonPage__summary,
-  .ComparisonPage__bestOffer {
+  .ComparisonPage__bestOffer,
+  .ComparisonPage__history {
     grid-template-columns: auto minmax(0, 1fr) auto;
     align-items: center;
   }
@@ -257,6 +403,14 @@
   .ComparisonPage__bestOfferPrice {
     grid-column: 3;
     grid-row: 1;
+  }
+
+  .ComparisonPage__history > div:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .ComparisonPage__chart {
+    grid-column: 1 / -1;
   }
 
   .ComparisonPage__offersGrid {
@@ -273,17 +427,32 @@
 @media (max-width: 767px) {
   .ComparisonPage__header,
   .ComparisonPage__sectionHeading,
-  .ComparisonPage__offerFooter {
+  .ComparisonPage__offerFooter,
+  .ComparisonPage__controls,
+  .ComparisonPage__empty {
     align-items: flex-start;
     flex-direction: column;
   }
 
   .ComparisonPage__header > .Button,
-  .ComparisonPage__offerFooter .Button {
+  .ComparisonPage__offerFooter .Button,
+  .ComparisonPage__empty .Button,
+  .ComparisonPage__sort,
+  .ComparisonPage__sort select {
     inline-size: 100%;
   }
 
   .ComparisonPage__offer:hover {
     transform: none;
+  }
+
+  .ComparisonPage__chartMeta {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .ComparisonPage__stateCards {
+    grid-template-columns: 1fr;
   }
 }
