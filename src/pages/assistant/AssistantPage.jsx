@@ -9,6 +9,7 @@ import {
   Sparkles,
 } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import {
   assistantMockResponseDelay,
   assistantQuickActions,
@@ -16,6 +17,8 @@ import {
   assistantShoppingContext,
   getMockAssistantResponse,
 } from '../../entities/assistant/model/assistantPrompts.js'
+import { APP_ROUTES } from '../../shared/config/index.js'
+import { buildProductContextUrl, readProductContext } from '../../shared/lib/productContext.js'
 import { Button, PageContainer, Skeleton, StatusMessage, TextField } from '../../shared/ui/index.js'
 import { DashboardLayout } from '../../widgets/dashboard-layout/DashboardLayout.jsx'
 import './AssistantPage.css'
@@ -62,14 +65,14 @@ function AssistantLoading() {
   )
 }
 
-function ShoppingContext() {
+function ShoppingContext({ productName }) {
   return (
     <aside className="AssistantPage__context" aria-labelledby="shopping-context-title">
       <div>
         <span className="AssistantPage__eyebrow"><ShieldCheck aria-hidden="true" />Ürün bağlamı</span>
         <h2 id="shopping-context-title">Takip edilen ürün</h2>
       </div>
-      <strong>{assistantShoppingContext.productName}</strong>
+      <strong>{productName}</strong>
       <dl>
         <div><dt>Güncel fiyat</dt><dd>{assistantShoppingContext.currentPrice}</dd></div>
         <div><dt>Son fiyat değişimi</dt><dd>{assistantShoppingContext.lastChange}</dd></div>
@@ -82,10 +85,14 @@ function ShoppingContext() {
 export function AssistantPage() {
   const inputRef = useRef(null)
   const responseTimerRef = useRef(null)
+  const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
   const [errorMessage, setErrorMessage] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [messages, setMessages] = useState([])
   const [question, setQuestion] = useState('')
+  const productContext = readProductContext(searchParams)
+  const productName = productContext.productName || assistantShoppingContext.productName
 
   useEffect(() => () => window.clearTimeout(responseTimerRef.current), [])
 
@@ -130,6 +137,18 @@ export function AssistantPage() {
     inputRef.current?.focus()
   }
 
+  function handleAction(action) {
+    if (action.id === 'comparison') {
+      navigate(buildProductContextUrl(APP_ROUTES.COMPARISON, {
+        productName,
+        productUrl: productContext.productUrl,
+      }))
+      return
+    }
+
+    handlePromptSelect(action.label)
+  }
+
   const hasConversation = messages.length > 0 || isLoading
 
   return (
@@ -167,12 +186,12 @@ export function AssistantPage() {
               {hasConversation && !isLoading ? (
                 <div className="AssistantPage__actions" aria-label="Devam eden aksiyonlar">
                   {assistantQuickActions.map((action) => (
-                    <button key={action} type="button" onClick={() => handlePromptSelect(action)}>
-                      {action}
-                      {action === 'Fiyat geçmişini göster' ? <History aria-hidden="true" /> : null}
-                      {action === 'Bu ürünü takip et' ? <BellRing aria-hidden="true" /> : null}
-                      {action === 'Alternatif ürün bul' ? <Sparkles aria-hidden="true" /> : null}
-                      {action === 'Mağazaları karşılaştır' ? <CircleCheck aria-hidden="true" /> : null}
+                    <button key={action.id} type="button" onClick={() => handleAction(action)}>
+                      {action.label}
+                      {action.id === 'history' ? <History aria-hidden="true" /> : null}
+                      {action.id === 'tracking' ? <BellRing aria-hidden="true" /> : null}
+                      {action.id === 'alternatives' ? <Sparkles aria-hidden="true" /> : null}
+                      {action.id === 'comparison' ? <CircleCheck aria-hidden="true" /> : null}
                     </button>
                   ))}
                 </div>
@@ -191,7 +210,7 @@ export function AssistantPage() {
                 <Button disabled={!question.trim()} icon={<Send aria-hidden="true" />} isLoading={isLoading} type="submit">Gönder</Button>
               </form>
             </div>
-            <ShoppingContext />
+            <ShoppingContext productName={productName} />
           </section>
         </PageContainer>
       </main>

@@ -6,7 +6,7 @@ import {
   ShieldCheck,
   Sparkles,
 } from 'lucide-react'
-import { useState } from 'react'
+import { useNavigate, useSearchParams, useState } from 'react'
 import {
   comparisonFilters,
   comparisonOffers,
@@ -15,6 +15,8 @@ import {
   comparisonSortOptions,
 } from '../../entities/comparison/model/mockComparison.js'
 import { ProductLinkForm } from '../../features/product-link-search/index.js'
+import { APP_ROUTES } from '../../shared/config/index.js'
+import { buildProductContextUrl, readProductContext } from '../../shared/lib/productContext.js'
 import { Button, PageContainer, Skeleton, StatusMessage } from '../../shared/ui/index.js'
 import { DashboardLayout } from '../../widgets/dashboard-layout/DashboardLayout.jsx'
 import './ComparisonPage.css'
@@ -87,8 +89,12 @@ function ComparisonEmptyState({ onStartComparison }) {
 }
 
 export function ComparisonPage() {
+  const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
   const [activeFilter, setActiveFilter] = useState('all')
   const [activeSort, setActiveSort] = useState('total')
+  const productContext = readProductContext(searchParams)
+  const productName = productContext.productName || comparisonProduct.name
   const visibleOffers = sortOffers(getFilteredOffers(activeFilter), activeSort)
   const bestOffer = comparisonOffers[0]
 
@@ -97,6 +103,13 @@ export function ComparisonPage() {
       behavior: 'smooth',
       block: 'start',
     })
+  }
+
+  function startTracking() {
+    navigate(buildProductContextUrl(APP_ROUTES.TRACKING, {
+      productName,
+      productUrl: productContext.productUrl,
+    }))
   }
 
   return (
@@ -110,6 +123,16 @@ export function ComparisonPage() {
             </div>
             <Button icon={<PackageSearch aria-hidden="true" />} onClick={scrollToSearch}>Yeni Karşılaştırma</Button>
           </header>
+
+          {productContext.hasInvalidProductUrl ? (
+            <StatusMessage type="error">
+              Ürün bağlantısı geçerli değil. Karşılaştırma yapmak için yeni bir bağlantı ekle.
+            </StatusMessage>
+          ) : !productContext.productUrl ? (
+            <StatusMessage type="info">
+              Ürün bağlantısı eklenmediği için örnek bir karşılaştırma gösteriliyor.
+            </StatusMessage>
+          ) : null}
 
           <section className="ComparisonPage__search" id="comparison-product-form" aria-labelledby="comparison-search-title">
             <div>
@@ -131,7 +154,7 @@ export function ComparisonPage() {
                 </div>
                 <div className="ComparisonPage__summaryInfo">
                   <p>{comparisonProduct.brand}</p>
-                  <h2 id="product-summary-title">{comparisonProduct.name}</h2>
+                  <h2 id="product-summary-title">{productName}</h2>
                   <div className="ComparisonPage__meta">
                     <span>{comparisonProduct.model}</span>
                     <span>{comparisonProduct.variant}</span>
@@ -147,6 +170,7 @@ export function ComparisonPage() {
                   <span className="ComparisonPage__badge"><BadgeCheck aria-hidden="true" />En İyi Teklif</span>
                   <h2 id="best-offer-title">{bestOffer.merchant}</h2>
                   <p>Toplam maliyet ve mağaza güvenine göre en avantajlı seçenek. Ücretsiz kargo ve stok bilgisi değerlendirmeye dahildir.</p>
+                  <Button icon={<PackagePlus aria-hidden="true" />} onClick={startTracking} variant="secondary">Ürünü Takibe Al</Button>
                 </div>
                 <strong className="ComparisonPage__bestOfferPrice">{bestOffer.total}</strong>
               </section>

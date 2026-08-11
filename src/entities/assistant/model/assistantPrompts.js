@@ -9,10 +9,10 @@ export const assistantQuickPrompts = [
 ]
 
 export const assistantQuickActions = [
-  'Fiyat geçmişini göster',
-  'Bu ürünü takip et',
-  'Alternatif ürün bul',
-  'Mağazaları karşılaştır',
+  { id: 'history', label: 'Fiyat geçmişini göster' },
+  { id: 'tracking', label: 'Bu ürünü takip et' },
+  { id: 'alternatives', label: 'Alternatif ürün bul' },
+  { id: 'comparison', label: 'Mağazaları karşılaştır' },
 ]
 
 export const assistantShoppingContext = {

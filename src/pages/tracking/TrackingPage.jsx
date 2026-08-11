@@ -5,6 +5,9 @@ import {
   PackagePlus,
   TrendingDown,
 } from 'lucide-react'
+import { useNavigate, useSearchParams } from 'react-router-dom'
+import { APP_ROUTES } from '../../shared/config/index.js'
+import { buildProductContextUrl, readProductContext } from '../../shared/lib/productContext.js'
 import { DashboardLayout } from '../../widgets/dashboard-layout/DashboardLayout.jsx'
 import { Button, PageContainer, Skeleton, StatusMessage } from '../../shared/ui/index.js'
 import './TrackingPage.css'
@@ -63,6 +66,17 @@ function TrackingEmptyState() {
 }
 
 export function TrackingPage() {
+  const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
+  const productContext = readProductContext(searchParams)
+
+  function askAssistant(productName) {
+    navigate(buildProductContextUrl(APP_ROUTES.ASSISTANT, {
+      productName,
+      productUrl: productContext.productUrl,
+    }))
+  }
+
   return (
     <DashboardLayout>
       <main className="TrackingPage">
@@ -129,7 +143,10 @@ export function TrackingPage() {
                         <span>{previousPrice}</span>
                         <b>{change}</b>
                       </div>
-                      <div className="TrackingPage__status">Takip aktif · Alarm açık</div>
+                      <div className="TrackingPage__status">
+                        <span>Takip aktif · Alarm açık</span>
+                        <Button onClick={() => askAssistant(name)} variant="ghost">AI’a Sor</Button>
+                      </div>
                     </article>
                   ))}
                 </div>

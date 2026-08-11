@@ -182,9 +182,17 @@
 }
 
 .TrackingPage__status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
   grid-column: 1 / -1;
   color: var(--color-text-secondary);
   font-size: var(--font-size-small);
+}
+
+.TrackingPage__status .Button {
+  flex: 0 0 auto;
 }
 
 .TrackingPage__details > article {
@@ -308,5 +316,10 @@
 
   .TrackingPage__state {
     grid-template-columns: 1fr;
+  }
+
+  .TrackingPage__status {
+    align-items: flex-start;
+    flex-direction: column;
   }
 }
