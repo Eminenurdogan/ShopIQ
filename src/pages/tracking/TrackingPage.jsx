@@ -77,6 +77,10 @@ export function TrackingPage() {
     }))
   }
 
+  function startProductTracking() {
+    navigate(APP_ROUTES.COMPARISON)
+  }
+
   return (
     <DashboardLayout>
       <main className="TrackingPage">
@@ -86,7 +90,7 @@ export function TrackingPage() {
               <h1>Ürün Takibi</h1>
               <p>Takip ettiğin ürünlerin fiyat değişimlerini tek yerden izle.</p>
             </div>
-            <Button icon={<PackagePlus aria-hidden="true" />}>Yeni Ürün Takibi</Button>
+            <Button icon={<PackagePlus aria-hidden="true" />} onClick={startProductTracking}>Yeni Ürün Takibi</Button>
           </header>
 
           {trackingState === 'loading' && <TrackingLoadingState />}

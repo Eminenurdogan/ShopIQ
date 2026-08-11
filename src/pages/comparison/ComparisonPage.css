@@ -53,6 +53,10 @@
   margin-block-end: var(--space-5);
 }
 
+.ComparisonPage .StatusMessage {
+  margin-block-end: var(--space-3);
+}
+
 .ComparisonPage__search,
 .ComparisonPage__summary,
 .ComparisonPage__bestOffer,

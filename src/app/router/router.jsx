@@ -7,6 +7,7 @@ import { TrackingPage } from '../../pages/tracking/TrackingPage.jsx'
 import { ComparisonPage } from '../../pages/comparison/ComparisonPage.jsx'
 import { AssistantPage } from '../../pages/assistant/AssistantPage.jsx'
 import { DashboardPage } from '../../pages/dashboard/DashboardPage.jsx'
+import { NotFoundPage } from '../../pages/not-found/NotFoundPage.jsx'
 import { APP_ROUTES } from '../../shared/config/index.js'
 
 export const router = createBrowserRouter([
@@ -24,6 +25,7 @@ export const router = createBrowserRouter([
       { path: APP_ROUTES.COMPARISON, element: <ComparisonPage /> },
       { path: APP_ROUTES.ASSISTANT, element: <AssistantPage /> },
       { path: APP_ROUTES.DASHBOARD, element: <DashboardPage /> },
+      { path: '*', element: <NotFoundPage /> },
     ],
   },
 ])

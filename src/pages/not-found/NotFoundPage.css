@@ -1,0 +1,28 @@
+.NotFoundPage {
+  display: grid;
+  min-block-size: 100svh;
+  place-items: center;
+  padding-block: var(--space-5);
+  background-color: var(--color-surface-page);
+}
+
+.NotFoundPage__content {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: var(--control-border-width) solid var(--color-border-default);
+  border-radius: var(--radius-card);
+  background-color: var(--color-surface-default);
+  box-shadow: var(--shadow-card);
+}
+
+.NotFoundPage__content > svg {
+  color: var(--color-brand-accent);
+}
+
+.NotFoundPage__content h1 {
+  margin: 0;
+  font-size: var(--font-size-heading-2);
+  line-height: var(--line-height-heading);
+}

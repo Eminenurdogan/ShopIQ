@@ -128,6 +128,10 @@ export function ComparisonPage() {
             <StatusMessage type="error">
               Ürün bağlantısı geçerli değil. Karşılaştırma yapmak için yeni bir bağlantı ekle.
             </StatusMessage>
+          ) : productContext.productUrl ? (
+            <StatusMessage type="info">
+              Ürün bağlantısı alındı. Gerçek ürün analizi henüz bağlı olmadığı için demo karşılaştırma verisi gösteriliyor.
+            </StatusMessage>
           ) : !productContext.productUrl ? (
             <StatusMessage type="info">
               Ürün bağlantısı eklenmediği için örnek bir karşılaştırma gösteriliyor.
