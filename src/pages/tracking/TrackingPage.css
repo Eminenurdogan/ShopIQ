@@ -1,1 +1,312 @@
-.TrackingPage{padding-block:var(--space-5)}.TrackingPage__header,.TrackingPage__sectionHeading{display:flex;align-items:center;justify-content:space-between;gap:var(--space-3)}.TrackingPage__header{margin-block-end:var(--space-4)}.TrackingPage h1{font-size:var(--font-size-heading-1)}.TrackingPage h2{font-size:var(--font-size-heading-3)}.TrackingPage p,.TrackingPage span{color:var(--color-text-secondary)}.TrackingPage__stats,.TrackingPage__products{display:grid;gap:var(--space-3);margin-block-end:var(--space-5)}.TrackingPage__stats article,.TrackingPage__products article{display:grid;gap:var(--space-2);padding:var(--space-3);border:var(--control-border-width) solid var(--color-border-default);border-radius:var(--radius-card);background-color:var(--color-surface-default);box-shadow:var(--shadow-card)}.TrackingPage__stats strong{font-size:var(--font-size-heading-2)}.TrackingPage__products article{grid-template-columns:auto 1fr;align-items:center}.TrackingPage__visual{display:grid;inline-size:var(--space-6);block-size:var(--space-6);place-items:center;border-radius:var(--radius-medium);background-color:var(--color-surface-subtle);color:var(--color-brand-accent)}.TrackingPage__product h3{font-size:var(--font-size-heading-4)}.TrackingPage__price{display:grid;gap:var(--space-1)}.TrackingPage__price strong{font-size:var(--font-size-heading-3)}.TrackingPage__price span{text-decoration:line-through}.TrackingPage__price b{color:var(--color-status-success-icon)}.TrackingPage__status{grid-column:1/-1;color:var(--color-text-secondary);font-size:var(--font-size-small)}@media(min-width:768px){.TrackingPage__stats{grid-template-columns:repeat(4,minmax(0,1fr))}.TrackingPage__products article{grid-template-columns:auto 1fr auto auto}}@media(max-width:767px){.TrackingPage__header{align-items:start;flex-direction:column}}
+.TrackingPage {
+  padding-block: var(--space-5);
+}
+
+.TrackingPage__header,
+.TrackingPage__sectionHeading,
+.TrackingPage__controls,
+.TrackingPage__chartMeta,
+.TrackingPage__empty {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.TrackingPage__header {
+  margin-block-end: var(--space-4);
+}
+
+.TrackingPage h1 {
+  font-size: var(--font-size-heading-1);
+}
+
+.TrackingPage h2 {
+  font-size: var(--font-size-heading-3);
+}
+
+.TrackingPage h3 {
+  font-size: var(--font-size-heading-4);
+}
+
+.TrackingPage p,
+.TrackingPage span {
+  color: var(--color-text-secondary);
+}
+
+.TrackingPage__stats,
+.TrackingPage__products,
+.TrackingPage__details,
+.TrackingPage__state {
+  display: grid;
+  gap: var(--space-3);
+  margin-block-end: var(--space-5);
+}
+
+.TrackingPage__stats article,
+.TrackingPage__products article,
+.TrackingPage__details > article,
+.TrackingPage__empty {
+  border: var(--control-border-width) solid var(--color-border-default);
+  border-radius: var(--radius-card);
+  background-color: var(--color-surface-default);
+  box-shadow: var(--shadow-card);
+}
+
+.TrackingPage__stats article {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-3);
+}
+
+.TrackingPage__stats strong {
+  font-size: var(--font-size-heading-2);
+}
+
+.TrackingPage__sectionHeading {
+  margin-block-end: var(--space-3);
+}
+
+.TrackingPage__sectionHeading > svg {
+  color: var(--color-brand-accent);
+}
+
+.TrackingPage__controls {
+  margin-block-end: var(--space-3);
+}
+
+.TrackingPage__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+.TrackingPage__filters button,
+.TrackingPage__sort {
+  border: var(--control-border-width) solid var(--color-border-default);
+  border-radius: var(--radius-pill);
+  background-color: var(--color-surface-default);
+  color: var(--color-text-secondary);
+  font: inherit;
+  padding: var(--space-1) var(--space-2);
+  transition:
+    border-color var(--motion-transition-standard),
+    color var(--motion-transition-standard),
+    background-color var(--motion-transition-standard);
+}
+
+.TrackingPage__filters button[aria-pressed='true'] {
+  border-color: var(--color-brand-accent);
+  background-color: var(--color-surface-subtle);
+  color: var(--color-text-primary);
+}
+
+.TrackingPage__filters button:hover,
+.TrackingPage__sort:hover {
+  border-color: var(--color-brand-accent);
+  color: var(--color-text-primary);
+}
+
+.TrackingPage__filters button:focus-visible,
+.TrackingPage__sort:focus-visible {
+  outline: var(--focus-ring-width) solid var(--color-focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.TrackingPage__sort {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  white-space: nowrap;
+}
+
+.TrackingPage__sort svg {
+  inline-size: var(--space-2);
+  block-size: var(--space-2);
+}
+
+.TrackingPage__products article {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  transition:
+    border-color var(--motion-transition-standard),
+    box-shadow var(--motion-transition-standard),
+    transform var(--motion-transition-standard);
+}
+
+.TrackingPage__products article:hover {
+  border-color: var(--color-brand-accent);
+  box-shadow: var(--shadow-popup);
+  transform: translateY(var(--motion-translate-card-hover));
+}
+
+.TrackingPage__visual {
+  display: grid;
+  inline-size: var(--space-6);
+  block-size: var(--space-6);
+  place-items: center;
+  border-radius: var(--radius-medium);
+  background-color: var(--color-surface-subtle);
+  color: var(--color-brand-accent);
+}
+
+.TrackingPage__product {
+  min-inline-size: 0;
+}
+
+.TrackingPage__product h3 {
+  overflow: hidden;
+  margin-block: var(--space-1);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.TrackingPage__price {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.TrackingPage__price strong {
+  font-size: var(--font-size-heading-3);
+}
+
+.TrackingPage__price span {
+  text-decoration: line-through;
+}
+
+.TrackingPage__price b {
+  color: var(--color-status-success-icon);
+}
+
+.TrackingPage__status {
+  grid-column: 1 / -1;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-small);
+}
+
+.TrackingPage__details > article {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-3);
+}
+
+.TrackingPage__chart {
+  display: grid;
+  gap: var(--space-2);
+  color: var(--color-brand-accent);
+}
+
+.TrackingPage__chartValue,
+.TrackingPage__chartMeta strong {
+  color: var(--color-text-primary);
+  font-size: var(--font-size-heading-4);
+}
+
+.TrackingPage__chart svg {
+  display: block;
+  inline-size: 100%;
+  block-size: var(--space-8);
+  overflow: visible;
+}
+
+.TrackingPage__chart polyline {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: var(--control-border-width);
+}
+
+.TrackingPage__chartMeta {
+  align-items: flex-start;
+}
+
+.TrackingPage__notifications {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.TrackingPage__notifications li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-text-secondary);
+}
+
+.TrackingPage__notifications svg {
+  flex: 0 0 auto;
+  color: var(--color-brand-accent);
+}
+
+.TrackingPage__state {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.TrackingPage__empty {
+  justify-content: flex-start;
+  padding: var(--space-4);
+}
+
+.TrackingPage__empty > svg {
+  color: var(--color-brand-accent);
+}
+
+.TrackingPage__empty > div {
+  display: grid;
+  gap: var(--space-1);
+}
+
+@media (min-width: 768px) {
+  .TrackingPage__stats {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .TrackingPage__products article {
+    grid-template-columns: auto minmax(0, 1fr) auto auto;
+  }
+
+  .TrackingPage__details {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .TrackingPage__header,
+  .TrackingPage__sectionHeading,
+  .TrackingPage__controls,
+  .TrackingPage__empty {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .TrackingPage__controls,
+  .TrackingPage__filters,
+  .TrackingPage__sort,
+  .TrackingPage__header > .Button {
+    inline-size: 100%;
+  }
+
+  .TrackingPage__sort {
+    justify-content: space-between;
+  }
+
+  .TrackingPage__products article:hover {
+    transform: none;
+  }
+
+  .TrackingPage__chartMeta {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .TrackingPage__state {
+    grid-template-columns: 1fr;
+  }
+}
