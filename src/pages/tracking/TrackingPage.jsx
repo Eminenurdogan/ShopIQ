@@ -1,3 +1,8 @@
-import { DashboardOverview } from '../../widgets/dashboard-overview/DashboardOverview.jsx'
-const items=[{label:'Aktif takipler',title:'12 ürün',detail:'Fiyat değişimlerini tek ekranda izle.'},{label:'Son fiyat değişimi',title:'₺1.249',detail:'Takiplerindeki son hareketleri gör.'},{label:'Bildirimler',title:'3 yeni fırsat',detail:'İndirimleri zamanında yakala.'}]
-export function TrackingPage(){return <DashboardOverview title="Takiplerim" description="Ürünlerini izle, fiyat düştüğünde ilk sen öğren." items={items}/>}
+import { BellRing, PackagePlus, TrendingDown } from 'lucide-react'
+import { DashboardLayout } from '../../widgets/dashboard-layout/DashboardLayout.jsx'
+import { Button, PageContainer } from '../../shared/ui/index.js'
+import './TrackingPage.css'
+
+const stats=[['Takip edilen ürünler','12'],['Fiyatı düşenler','3'],['Aktif fiyat alarmları','8'],['Bugünkü fırsatlar','2']]
+const products=[['Dyson Airwrap Complete','Teknosa','₺20.499','₺24.199','↓ %15'],['Apple AirPods Pro','MediaMarkt','₺8.299','₺9.199','↓ %10'],['Nike Air Max','Boyner','₺4.249','₺4.999','↓ %15']]
+export function TrackingPage(){return <DashboardLayout><main className="TrackingPage"><PageContainer width="wide"><header className="TrackingPage__header"><div><h1>Ürün Takibi</h1><p>Takip ettiğin ürünlerin fiyat değişimlerini tek yerden izle.</p></div><Button icon={<PackagePlus/>}>Yeni Ürün Takibi</Button></header><section className="TrackingPage__stats" aria-label="Takip özeti">{stats.map(([label,value])=><article key={label}><span>{label}</span><strong>{value}</strong></article>)}</section><section><div className="TrackingPage__sectionHeading"><div><h2>Takip edilen ürünler</h2><p>En önemli fiyat değişimlerini hızlıca incele.</p></div><BellRing aria-hidden="true"/></div><div className="TrackingPage__products">{products.map(([name,store,price,previous,change])=><article key={name}><div className="TrackingPage__visual"><TrendingDown aria-hidden="true"/></div><div className="TrackingPage__product"><span>{store}</span><h3>{name}</h3><p>Son güncelleme: bugün</p></div><div className="TrackingPage__price"><strong>{price}</strong><span>{previous}</span><b>{change}</b></div><div className="TrackingPage__status">Takip aktif · Alarm açık</div></article>)}</div></section></PageContainer></main></DashboardLayout>}
