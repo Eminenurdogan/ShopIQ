@@ -1,0 +1,22 @@
+.LegalPlaceholderPage {
+  padding-block: var(--space-7);
+}
+
+.LegalPlaceholderPage__content {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  border: var(--control-border-width) solid var(--color-border-default);
+  border-radius: var(--radius-card);
+  background-color: var(--color-surface-default);
+  box-shadow: var(--shadow-card);
+}
+
+.LegalPlaceholderPage__content > svg {
+  color: var(--color-brand-accent);
+}
+
+.LegalPlaceholderPage h1 {
+  font-size: var(--font-size-heading-1);
+  line-height: var(--line-height-heading);
+}

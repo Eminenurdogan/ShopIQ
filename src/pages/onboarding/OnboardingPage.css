@@ -1,0 +1,51 @@
+.OnboardingPage {
+  padding-block: var(--space-7);
+}
+
+.OnboardingPage__content {
+  display: grid;
+  max-inline-size: var(--container-content-width);
+  gap: var(--space-3);
+  margin-inline: auto;
+  padding: var(--space-5);
+  border: var(--control-border-width) solid var(--color-border-default);
+  border-radius: var(--radius-card);
+  background-color: var(--color-surface-default);
+  box-shadow: var(--shadow-card);
+}
+
+.OnboardingPage__eyebrow {
+  color: var(--color-brand-accent);
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-semibold);
+}
+
+.OnboardingPage h1 {
+  font-size: var(--font-size-heading-1);
+  line-height: var(--line-height-heading);
+}
+
+.OnboardingPage p {
+  color: var(--color-text-secondary);
+}
+
+.OnboardingPage__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+@media (max-width: 767px) {
+  .OnboardingPage {
+    padding-block: var(--space-5);
+  }
+
+  .OnboardingPage__content {
+    padding: var(--space-3);
+  }
+
+  .OnboardingPage__actions,
+  .OnboardingPage__actions .Button {
+    inline-size: 100%;
+  }
+}

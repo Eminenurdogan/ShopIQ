@@ -1,11 +1,10 @@
 import {
   BellRing,
-  ChevronDown,
   CircleCheck,
   PackagePlus,
   TrendingDown,
 } from 'lucide-react'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useMemo, useNavigate, useSearchParams, useState } from 'react'
 import { APP_ROUTES } from '../../shared/config/index.js'
 import { buildProductContextUrl, readProductContext } from '../../shared/lib/productContext.js'
 import { DashboardLayout } from '../../widgets/dashboard-layout/DashboardLayout.jsx'
@@ -21,12 +20,53 @@ const stats = [
   ['Bugünkü fırsatlar', '2'],
 ]
 
-const filters = ['Tümü', 'Fiyatı Düşenler', 'Alarm Aktif', 'Fiyatı Artanlar']
+const filters = [
+  ['all', 'Tümü'],
+  ['price-drop', 'Fiyatı Düşenler'],
+  ['alarm-active', 'Alarm Aktif'],
+  ['price-rise', 'Fiyatı Artanlar'],
+]
+
+const sortOptions = [
+  ['updated', 'Son Güncellenen'],
+  ['price', 'Fiyat'],
+  ['change', 'İndirim Oranı'],
+]
 
 const products = [
-  ['Dyson Airwrap Complete', 'Teknosa', '₺20.499', '₺24.199', '↓ %15'],
-  ['Apple AirPods Pro', 'MediaMarkt', '₺8.299', '₺9.199', '↓ %10'],
-  ['Nike Air Max', 'Boyner', '₺4.249', '₺4.999', '↓ %15'],
+  {
+    alarmActive: true,
+    change: '↓ %15',
+    changeValue: -15,
+    name: 'Dyson Airwrap Complete',
+    previousPrice: '₺24.199',
+    price: '₺20.499',
+    priceValue: 20499,
+    store: 'Teknosa',
+    updatedRank: 1,
+  },
+  {
+    alarmActive: true,
+    change: '↓ %10',
+    changeValue: -10,
+    name: 'Apple AirPods Pro',
+    previousPrice: '₺9.199',
+    price: '₺8.299',
+    priceValue: 8299,
+    store: 'MediaMarkt',
+    updatedRank: 2,
+  },
+  {
+    alarmActive: false,
+    change: '↑ %6',
+    changeValue: 6,
+    name: 'Nike Air Max',
+    previousPrice: '₺3.999',
+    price: '₺4.249',
+    priceValue: 4249,
+    store: 'Boyner',
+    updatedRank: 3,
+  },
 ]
 
 const notifications = [
@@ -52,7 +92,7 @@ function TrackingErrorState() {
   )
 }
 
-function TrackingEmptyState() {
+function TrackingEmptyState({ onStartTracking }) {
   return (
     <section className="TrackingPage__empty" aria-labelledby="tracking-empty-title">
       <PackagePlus aria-hidden="true" />
@@ -60,7 +100,7 @@ function TrackingEmptyState() {
         <h2 id="tracking-empty-title">Henüz takip ettiğin bir ürün yok.</h2>
         <p>Bir ürün linki ekleyerek fiyat değişimlerini izlemeye başla.</p>
       </div>
-      <Button icon={<PackagePlus aria-hidden="true" />}>İlk Ürününü Takip Et</Button>
+      <Button icon={<PackagePlus aria-hidden="true" />} onClick={onStartTracking}>İlk Ürününü Takip Et</Button>
     </section>
   )
 }
@@ -68,12 +108,34 @@ function TrackingEmptyState() {
 export function TrackingPage() {
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
+  const [activeFilter, setActiveFilter] = useState('all')
+  const [activeSort, setActiveSort] = useState('updated')
   const productContext = readProductContext(searchParams)
+  const visibleProducts = useMemo(() => {
+    const filteredProducts = products.filter((product) => {
+      if (activeFilter === 'price-drop') return product.changeValue < 0
+      if (activeFilter === 'alarm-active') return product.alarmActive
+      if (activeFilter === 'price-rise') return product.changeValue > 0
 
-  function askAssistant(productName) {
+      return true
+    })
+
+    return [...filteredProducts].sort((firstProduct, secondProduct) => {
+      if (activeSort === 'price') return firstProduct.priceValue - secondProduct.priceValue
+      if (activeSort === 'change') return firstProduct.changeValue - secondProduct.changeValue
+
+      return firstProduct.updatedRank - secondProduct.updatedRank
+    })
+  }, [activeFilter, activeSort])
+
+  function askAssistant(product) {
     navigate(buildProductContextUrl(APP_ROUTES.ASSISTANT, {
-      productName,
+      previousPrice: product.previousPrice,
+      price: product.price,
+      priceChange: product.change,
+      productName: product.name,
       productUrl: productContext.productUrl,
+      store: product.store,
     }))
   }
 
@@ -95,7 +157,7 @@ export function TrackingPage() {
 
           {trackingState === 'loading' && <TrackingLoadingState />}
           {trackingState === 'error' && <TrackingErrorState />}
-          {trackingState === 'empty' && <TrackingEmptyState />}
+          {trackingState === 'empty' && <TrackingEmptyState onStartTracking={startProductTracking} />}
 
           {trackingState === 'ready' && (
             <>
@@ -119,37 +181,39 @@ export function TrackingPage() {
 
                 <div className="TrackingPage__controls" aria-label="Ürün takibi filtreleri">
                   <div className="TrackingPage__filters" role="group" aria-label="Filtrele">
-                    {filters.map((filter, index) => (
-                      <button key={filter} type="button" aria-pressed={index === 0}>
-                        {filter}
+                    {filters.map(([filterId, label]) => (
+                      <button key={filterId} type="button" aria-pressed={activeFilter === filterId} onClick={() => setActiveFilter(filterId)}>
+                        {label}
                       </button>
                     ))}
                   </div>
-                  <button className="TrackingPage__sort" type="button" aria-label="Sıralama: Son Güncellenen">
-                    Son Güncellenen
-                    <ChevronDown aria-hidden="true" />
-                  </button>
+                  <label className="TrackingPage__sort">
+                    <span>Sırala</span>
+                    <select aria-label="Ürünleri sırala" value={activeSort} onChange={(event) => setActiveSort(event.target.value)}>
+                      {sortOptions.map(([sortId, label]) => <option key={sortId} value={sortId}>{label}</option>)}
+                    </select>
+                  </label>
                 </div>
 
                 <div className="TrackingPage__products">
-                  {products.map(([name, store, price, previousPrice, change]) => (
-                    <article key={name}>
+                  {visibleProducts.map((product) => (
+                    <article key={product.name}>
                       <div className="TrackingPage__visual">
                         <TrendingDown aria-hidden="true" />
                       </div>
                       <div className="TrackingPage__product">
-                        <span>{store}</span>
-                        <h3>{name}</h3>
+                        <span>{product.store}</span>
+                        <h3>{product.name}</h3>
                         <p>Son güncelleme: bugün</p>
                       </div>
                       <div className="TrackingPage__price">
-                        <strong>{price}</strong>
-                        <span>{previousPrice}</span>
-                        <b>{change}</b>
+                        <strong>{product.price}</strong>
+                        <span>{product.previousPrice}</span>
+                        <b>{product.change}</b>
                       </div>
                       <div className="TrackingPage__status">
-                        <span>Takip aktif · Alarm açık</span>
-                        <Button onClick={() => askAssistant(name)} variant="ghost">AI’a Sor</Button>
+                        <span>{product.alarmActive ? 'Takip aktif · Alarm açık' : 'Takip aktif · Alarm kapalı'}</span>
+                        <Button onClick={() => askAssistant(product)} variant="ghost">AI’a Sor</Button>
                       </div>
                     </article>
                   ))}

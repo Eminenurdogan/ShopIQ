@@ -121,6 +121,10 @@ form {
   min-height: 100svh;
 }
 
+section[id] {
+  scroll-margin-block-start: var(--space-7);
+}
+
 body.is-navigation-open {
   overflow: hidden;
 }

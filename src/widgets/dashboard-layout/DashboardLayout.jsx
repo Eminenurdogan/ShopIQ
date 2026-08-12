@@ -1,8 +1,9 @@
-import { Bell, Bot, ChartNoAxesCombined, House, Menu, Search, X } from 'lucide-react'
+import { Bell, Bot, ChartNoAxesCombined, CircleUserRound, House, LogOut, Menu, Search, Settings, UserRound, X } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { APP_ROUTES, siteConfig } from '../../shared/config/index.js'
 import { Button } from '../../shared/ui/index.js'
+import logoImage from '../../assets/images/logo/shopiq-logo.png'
 import './DashboardLayout.css'
 
 const focusableSelector = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
@@ -14,8 +15,27 @@ const items = [
   ['AI Asistan', APP_ROUTES.ASSISTANT, Bot],
 ]
 
+const mockSearchItems = [
+  ['Dyson Airwrap karşılaştırması', APP_ROUTES.COMPARISON],
+  ['Ürün takibi', APP_ROUTES.TRACKING],
+  ['Akıllı öneriler', APP_ROUTES.ASSISTANT],
+  ['Dashboard özeti', APP_ROUTES.DASHBOARD],
+]
+
+const mockNotifications = [
+  'Dyson Airwrap fiyatı %15 düştü.',
+  'Takip ettiğin ürünlerde 2 fiyat değişimi var.',
+  'Yeni kampanya sinyali tespit edildi.',
+]
+
 export function DashboardLayout({ children }) {
+  const navigate = useNavigate()
   const [isMobileNavigationOpen, setIsMobileNavigationOpen] = useState(false)
+  const [isNotificationOpen, setIsNotificationOpen] = useState(false)
+  const [isProfileOpen, setIsProfileOpen] = useState(false)
+  const [isSearchOpen, setIsSearchOpen] = useState(false)
+  const [searchTerm, setSearchTerm] = useState('')
+  const [topBarNotice, setTopBarNotice] = useState('')
   const drawerRef = useRef(null)
   const menuButtonRef = useRef(null)
 
@@ -23,6 +43,17 @@ export function DashboardLayout({ children }) {
     setIsMobileNavigationOpen(false)
     menuButtonRef.current?.querySelector('button')?.focus()
   }
+
+  function openRoute(route) {
+    navigate(route)
+    setIsNotificationOpen(false)
+    setIsProfileOpen(false)
+    setIsSearchOpen(false)
+  }
+
+  const visibleSearchItems = mockSearchItems.filter(([label]) => (
+    label.toLocaleLowerCase('tr-TR').includes(searchTerm.toLocaleLowerCase('tr-TR'))
+  ))
 
   useEffect(() => {
     if (!isMobileNavigationOpen) {
@@ -83,7 +114,8 @@ export function DashboardLayout({ children }) {
       >
         <div className="DashboardLayout__drawerHeader">
           <NavLink className="DashboardLayout__brand" to={APP_ROUTES.HOME} onClick={closeMobileNavigation}>
-            {siteConfig.name}
+            <img alt="" src={logoImage} />
+            <span>{siteConfig.name}</span>
           </NavLink>
           <Button aria-label="Menüyü kapat" className="DashboardLayout__drawerClose" icon={<X />} onClick={closeMobileNavigation} variant="ghost" />
         </div>
@@ -109,13 +141,53 @@ export function DashboardLayout({ children }) {
               variant="ghost"
             />
           </span>
-          <div aria-label="Arama özelliği yakında" className="DashboardLayout__search">
-            <Search aria-hidden="true" />
-            <span>Arama yakında</span>
+          <div className="DashboardLayout__topbarControl DashboardLayout__topbarControl--search">
+            <button
+              aria-controls="dashboard-search-panel"
+              aria-expanded={isSearchOpen}
+              className="DashboardLayout__search"
+              onClick={() => setIsSearchOpen((isOpen) => !isOpen)}
+              type="button"
+            >
+              <Search aria-hidden="true" />
+              <span>Ürün, mağaza veya teklif ara</span>
+            </button>
+            {isSearchOpen ? (
+              <div className="DashboardLayout__panel" id="dashboard-search-panel">
+                <label className="DashboardLayout__panelLabel" htmlFor="dashboard-search">Demo aramada ara</label>
+                <input autoFocus id="dashboard-search" onChange={(event) => setSearchTerm(event.target.value)} placeholder="Dashboard içeriğinde ara" type="search" value={searchTerm} />
+                <ul className="DashboardLayout__panelList">
+                  {visibleSearchItems.map(([label, route]) => <li key={label}><button onClick={() => openRoute(route)} type="button">{label}</button></li>)}
+                </ul>
+              </div>
+            ) : null}
           </div>
-          <Button aria-label="Bildirimler" icon={<Bell />} variant="ghost" />
-          <span className="DashboardLayout__profile" aria-label="Profil alanı" />
+          <div className="DashboardLayout__topbarControl">
+            <Button aria-controls="dashboard-notification-panel" aria-expanded={isNotificationOpen} aria-label="Bildirimleri aç" icon={<Bell />} onClick={() => setIsNotificationOpen((isOpen) => !isOpen)} variant="ghost" />
+            {isNotificationOpen ? (
+              <div className="DashboardLayout__panel" id="dashboard-notification-panel">
+                <span className="DashboardLayout__panelLabel">Demo bildirimler</span>
+                <ul className="DashboardLayout__panelList">
+                  {mockNotifications.map((notification) => <li key={notification}><button onClick={() => openRoute(APP_ROUTES.TRACKING)} type="button">{notification}</button></li>)}
+                </ul>
+              </div>
+            ) : null}
+          </div>
+          <div className="DashboardLayout__topbarControl">
+            <Button aria-controls="dashboard-profile-panel" aria-expanded={isProfileOpen} aria-label="Profil menüsünü aç" icon={<CircleUserRound />} onClick={() => setIsProfileOpen((isOpen) => !isOpen)} variant="ghost" />
+            {isProfileOpen ? (
+              <div className="DashboardLayout__panel" id="dashboard-profile-panel">
+                <span className="DashboardLayout__panelLabel">Demo hesap</span>
+                <ul className="DashboardLayout__panelList">
+                  <li><button onClick={() => setTopBarNotice('Profil alanı demo aşamasında.') } type="button"><UserRound aria-hidden="true" />Profil</button></li>
+                  <li><button onClick={() => setTopBarNotice('Ayarlar alanı demo aşamasında.') } type="button"><Settings aria-hidden="true" />Ayarlar</button></li>
+                  <li><button onClick={() => openRoute(APP_ROUTES.ONBOARDING)} type="button"><LogOut aria-hidden="true" />Çıkış Yap (Demo)</button></li>
+                </ul>
+              </div>
+            ) : null}
+          </div>
         </header>
+        {topBarNotice ? <p className="DashboardLayout__notice" role="status">{topBarNotice}</p> : null}
         {children}
       </div>
     </div>

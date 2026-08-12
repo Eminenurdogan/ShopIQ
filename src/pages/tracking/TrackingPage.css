@@ -82,7 +82,7 @@
 }
 
 .TrackingPage__filters button,
-.TrackingPage__sort {
+.TrackingPage__sort select {
   border: var(--control-border-width) solid var(--color-border-default);
   border-radius: var(--radius-pill);
   background-color: var(--color-surface-default);
@@ -102,27 +102,22 @@
 }
 
 .TrackingPage__filters button:hover,
-.TrackingPage__sort:hover {
+.TrackingPage__sort select:hover {
   border-color: var(--color-brand-accent);
   color: var(--color-text-primary);
 }
 
 .TrackingPage__filters button:focus-visible,
-.TrackingPage__sort:focus-visible {
+.TrackingPage__sort select:focus-visible {
   outline: var(--focus-ring-width) solid var(--color-focus-ring);
   outline-offset: var(--focus-ring-offset);
 }
 
 .TrackingPage__sort {
-  display: inline-flex;
-  align-items: center;
+  display: grid;
   gap: var(--space-1);
-  white-space: nowrap;
-}
-
-.TrackingPage__sort svg {
-  inline-size: var(--space-2);
-  block-size: var(--space-2);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-small);
 }
 
 .TrackingPage__products article {
@@ -296,12 +291,9 @@
   .TrackingPage__controls,
   .TrackingPage__filters,
   .TrackingPage__sort,
+  .TrackingPage__sort select,
   .TrackingPage__header > .Button {
     inline-size: 100%;
-  }
-
-  .TrackingPage__sort {
-    justify-content: space-between;
   }
 
   .TrackingPage__products article:hover {

@@ -20,10 +20,19 @@
 }
 
 .DashboardLayout__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
   color: var(--color-text-primary);
   font-family: var(--font-role-heading);
   font-size: var(--font-size-heading-3);
   font-weight: var(--font-weight-semibold);
+}
+
+.DashboardLayout__brand img {
+  inline-size: var(--space-4);
+  block-size: var(--space-4);
+  object-fit: contain;
 }
 
 .DashboardLayout__drawerClose {
@@ -69,6 +78,16 @@
   background-color: var(--color-surface-default);
 }
 
+.DashboardLayout__topbarControl {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.DashboardLayout__topbarControl--search {
+  flex: 1 1 auto;
+  min-inline-size: 0;
+}
+
 .DashboardLayout__search {
   display: flex;
   flex: 1;
@@ -79,7 +98,22 @@
   border: var(--control-border-width) solid var(--color-border-default);
   border-radius: var(--radius-button);
   color: var(--color-text-secondary);
+  background-color: var(--color-surface-default);
   font-size: var(--font-size-small);
+  text-align: start;
+  inline-size: 100%;
+}
+
+.DashboardLayout__search:hover {
+  border-color: var(--color-brand-accent);
+  color: var(--color-text-primary);
+}
+
+.DashboardLayout__search:focus-visible,
+.DashboardLayout__panel button:focus-visible,
+.DashboardLayout__panel input:focus-visible {
+  outline: var(--focus-ring-width) solid var(--color-focus-ring);
+  outline-offset: var(--focus-ring-offset);
 }
 
 .DashboardLayout__search span {
@@ -88,11 +122,68 @@
   white-space: nowrap;
 }
 
-.DashboardLayout__profile {
-  inline-size: var(--space-4);
-  block-size: var(--space-4);
-  border-radius: var(--radius-large);
-  background: var(--gradient-primary);
+.DashboardLayout__panel {
+  position: absolute;
+  z-index: var(--z-index-dropdown);
+  inset-block-start: calc(100% + var(--space-1));
+  inset-inline-end: 0;
+  display: grid;
+  inline-size: min(calc(var(--space-7) * 5), 100vw);
+  gap: var(--space-2);
+  padding: var(--space-2);
+  border: var(--control-border-width) solid var(--color-border-default);
+  border-radius: var(--radius-medium);
+  background-color: var(--color-surface-default);
+  box-shadow: var(--shadow-popup);
+}
+
+.DashboardLayout__topbarControl--search .DashboardLayout__panel {
+  inset-inline-start: 0;
+  inset-inline-end: auto;
+}
+
+.DashboardLayout__panelLabel {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-small);
+}
+
+.DashboardLayout__panel input {
+  min-block-size: var(--control-button-height);
+  padding-inline: var(--space-2);
+  border: var(--control-border-width) solid var(--color-border-default);
+  border-radius: var(--radius-button);
+  background-color: var(--color-surface-default);
+}
+
+.DashboardLayout__panelList {
+  display: grid;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.DashboardLayout__panelList button {
+  display: flex;
+  inline-size: 100%;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1);
+  border-radius: var(--radius-small);
+  color: var(--color-text-primary);
+  text-align: start;
+}
+
+.DashboardLayout__panelList button:hover {
+  background-color: var(--color-surface-subtle);
+}
+
+.DashboardLayout__notice {
+  margin: 0;
+  padding: var(--space-1) var(--space-2);
+  background-color: var(--color-surface-subtle);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-small);
 }
 
 .DashboardLayout__backdrop {
@@ -127,5 +218,19 @@
   .DashboardLayout__backdrop,
   .DashboardLayout__topbar > span:first-child {
     display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .DashboardLayout__topbar {
+    gap: var(--space-1);
+  }
+
+  .DashboardLayout__panel {
+    inset-inline-end: calc(var(--space-2) * -1);
+  }
+
+  .DashboardLayout__topbarControl--search .DashboardLayout__panel {
+    inset-inline-start: calc(var(--space-2) * -1);
   }
 }

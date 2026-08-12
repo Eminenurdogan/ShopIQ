@@ -8,6 +8,8 @@ import { ComparisonPage } from '../../pages/comparison/ComparisonPage.jsx'
 import { AssistantPage } from '../../pages/assistant/AssistantPage.jsx'
 import { DashboardPage } from '../../pages/dashboard/DashboardPage.jsx'
 import { NotFoundPage } from '../../pages/not-found/NotFoundPage.jsx'
+import { OnboardingPage } from '../../pages/onboarding/OnboardingPage.jsx'
+import { LegalPlaceholderPage } from '../../pages/legal/LegalPlaceholderPage.jsx'
 import { APP_ROUTES } from '../../shared/config/index.js'
 
 export const router = createBrowserRouter([
@@ -19,6 +21,9 @@ export const router = createBrowserRouter([
         children: [
           { path: APP_ROUTES.HOME, element: <HomePage /> },
           { path: APP_ROUTES.COMPARE, element: <ComparePage /> },
+          { path: APP_ROUTES.ONBOARDING, element: <OnboardingPage /> },
+          { path: APP_ROUTES.PRIVACY, element: <LegalPlaceholderPage title="Gizlilik" /> },
+          { path: APP_ROUTES.TERMS, element: <LegalPlaceholderPage title="Kullanım Koşulları" /> },
         ],
       },
       { path: APP_ROUTES.TRACKING, element: <TrackingPage /> },

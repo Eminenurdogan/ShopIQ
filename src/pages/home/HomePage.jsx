@@ -1,4 +1,5 @@
 import { Benefits } from '../../widgets/benefits/index.js'
+import { DashboardPreview } from '../../widgets/dashboard-preview/index.js'
 import { Faq } from '../../widgets/faq/index.js'
 import { FeatureHighlights } from '../../widgets/feature-highlights/index.js'
 import { Hero } from '../../widgets/hero/index.js'
@@ -10,6 +11,7 @@ export function HomePage() {
   return (
     <>
       <Hero />
+      <DashboardPreview />
       <FeatureHighlights />
       <HowItWorks />
       <Benefits />

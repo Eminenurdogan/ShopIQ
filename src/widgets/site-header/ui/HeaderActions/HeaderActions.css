@@ -1,18 +1,26 @@
 .HeaderActions {
   display: inline-flex;
   flex: 0 0 auto;
+  align-items: center;
+  gap: var(--space-1);
 }
 
-.HeaderActions .Button {
+.HeaderActions .Button:last-child {
   white-space: nowrap;
   background: var(--gradient-primary);
   box-shadow: var(--shadow-popup);
   color: var(--color-text-primary);
 }
 
-.HeaderActions .Button:hover {
+.HeaderActions .Button:last-child:hover {
   background: var(--gradient-primary);
   box-shadow:
     0 0 0 var(--focus-ring-width) var(--color-brand-accent),
     var(--shadow-popup);
+}
+
+@media (max-width: 767px) {
+  .HeaderActions .Button:not(:last-child) {
+    display: none;
+  }
 }

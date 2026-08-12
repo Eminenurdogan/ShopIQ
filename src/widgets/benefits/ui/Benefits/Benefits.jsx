@@ -14,9 +14,9 @@ const benefits = [
     title: 'Kararınızı güvenle verin',
   },
   {
-    description: 'Tercih ettiğiniz teklifi seçtiğinizde doğrudan mağazaya devam edin.',
+    description: 'Teklifin toplam maliyetini, kargosunu ve mağaza güvenini birlikte değerlendirerek karar verin.',
     icon: ExternalLink,
-    title: 'Doğru mağazaya ilerleyin',
+    title: 'Doğru mağazayı değerlendirin',
   },
 ]
 
@@ -29,7 +29,7 @@ export function Benefits() {
             <h2 id="benefits-title">Karar vermek daha kolay</h2>
             <p>
               ShopIQ, doğru ürünü ve doğru mağazayı seçmeniz için ihtiyaç duyduğunuz
-              karşılaştırma deneyimini sunar.
+              karşılaştırma, takip ve karar desteği deneyimini sunar.
             </p>
           </div>
           <ul className="Benefits__list">

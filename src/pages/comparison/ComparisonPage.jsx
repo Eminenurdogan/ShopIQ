@@ -6,7 +6,7 @@ import {
   ShieldCheck,
   Sparkles,
 } from 'lucide-react'
-import { useNavigate, useSearchParams, useState } from 'react'
+import { useEffect, useMemo, useNavigate, useSearchParams, useState } from 'react'
 import {
   comparisonFilters,
   comparisonOffers,
@@ -27,21 +27,52 @@ function getMerchantInitial(merchant) {
   return merchant.slice(0, 1)
 }
 
-function getFilteredOffers(filter) {
+function formatPrice(price) {
+  return new Intl.NumberFormat('tr-TR', { maximumFractionDigits: 0 }).format(price).replace(/^/, '₺')
+}
+
+function getDeliveryValue(delivery) {
+  return Number(delivery.replace(/[^0-9]/g, '')) || 0
+}
+
+function getContextualOffers(price) {
+  const contextPrice = Number(price?.replace(/[^0-9]/g, ''))
+
+  if (!contextPrice) {
+    return comparisonOffers
+  }
+
+  const baseTotal = comparisonOffers[0].totalValue
+
+  return comparisonOffers.map((offer) => {
+    const totalValue = contextPrice + (offer.totalValue - baseTotal)
+    const priceValue = totalValue - getDeliveryValue(offer.delivery)
+
+    return {
+      ...offer,
+      price: formatPrice(priceValue),
+      priceValue,
+      total: formatPrice(totalValue),
+      totalValue,
+    }
+  })
+}
+
+function getFilteredOffers(offers, filter) {
   if (filter === 'lowest-price') {
-    const lowestPrice = Math.min(...comparisonOffers.map(({ priceValue }) => priceValue))
-    return comparisonOffers.filter(({ priceValue }) => priceValue === lowestPrice)
+    const lowestPrice = Math.min(...offers.map(({ priceValue }) => priceValue))
+    return offers.filter(({ priceValue }) => priceValue === lowestPrice)
   }
 
   if (filter === 'free-delivery') {
-    return comparisonOffers.filter(({ isFreeDelivery }) => isFreeDelivery)
+    return offers.filter(({ isFreeDelivery }) => isFreeDelivery)
   }
 
   if (filter === 'in-stock') {
-    return comparisonOffers.filter(({ isInStock }) => isInStock)
+    return offers.filter(({ isInStock }) => isInStock)
   }
 
-  return comparisonOffers
+  return offers
 }
 
 function sortOffers(offers, sort) {
@@ -96,8 +127,28 @@ export function ComparisonPage() {
   const [isStoreNoticeVisible, setIsStoreNoticeVisible] = useState(false)
   const productContext = readProductContext(searchParams)
   const productName = productContext.productName || comparisonProduct.name
-  const visibleOffers = sortOffers(getFilteredOffers(activeFilter), activeSort)
-  const bestOffer = comparisonOffers[0]
+  const offers = useMemo(() => getContextualOffers(productContext.price), [productContext.price])
+  const visibleOffers = sortOffers(getFilteredOffers(offers, activeFilter), activeSort)
+  const bestOffer = offers[0]
+  const productPriceHistory = productContext.price
+    ? {
+        current: productContext.price,
+        lowest: productContext.price,
+        trend: productContext.previousPrice ? `Demo fiyat değişimi: ${productContext.previousPrice} → ${productContext.price}` : 'Demo fiyat trendi gösteriliyor.',
+      }
+    : comparisonPriceHistory
+
+  useEffect(() => {
+    const sectionId = window.location.hash.slice(1)
+
+    if (!sectionId) {
+      return
+    }
+
+    window.requestAnimationFrame(() => {
+      document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    })
+  }, [])
 
   function scrollToSearch() {
     document.getElementById('comparison-product-form')?.scrollIntoView({
@@ -108,8 +159,12 @@ export function ComparisonPage() {
 
   function startTracking() {
     navigate(buildProductContextUrl(APP_ROUTES.TRACKING, {
+      previousPrice: productContext.previousPrice,
+      price: bestOffer.total,
+      priceChange: productContext.priceChange,
       productName,
       productUrl: productContext.productUrl,
+      store: bestOffer.merchant,
     }))
   }
 
@@ -164,7 +219,7 @@ export function ComparisonPage() {
                   <PackageSearch aria-hidden="true" />
                 </div>
                 <div className="ComparisonPage__summaryInfo">
-                  <p>{comparisonProduct.brand}</p>
+                  <p>{productContext.productName ? 'Demo ürün analizi' : comparisonProduct.brand}</p>
                   <h2 id="product-summary-title">{productName}</h2>
                   <div className="ComparisonPage__meta">
                     <span>{comparisonProduct.model}</span>
@@ -186,22 +241,22 @@ export function ComparisonPage() {
                 <strong className="ComparisonPage__bestOfferPrice">{bestOffer.total}</strong>
               </section>
 
-              <section className="ComparisonPage__history" aria-labelledby="price-history-title">
+              <section className="ComparisonPage__history" id="price-history" aria-labelledby="price-history-title">
                 <div>
                   <h2 id="price-history-title">Fiyat geçmişi</h2>
-                  <p>{comparisonPriceHistory.trend}</p>
+                  <p>{productPriceHistory.trend}</p>
                 </div>
-                <div className="ComparisonPage__chart" role="img" aria-label="Dyson Airwrap fiyatı son dört haftada 24 bin 199 liradan 20 bin 499 liraya düştü.">
+                <div className="ComparisonPage__chart" role="img" aria-label={`${productName} için demo fiyat geçmişi gösteriliyor.`}>
                   <div className="ComparisonPage__chartValues">
                     <span>En düşük fiyat</span>
-                    <strong>{comparisonPriceHistory.lowest}</strong>
+                    <strong>{productPriceHistory.lowest}</strong>
                   </div>
                   <svg viewBox="0 0 100 40" aria-hidden="true" focusable="false" preserveAspectRatio="none">
                     <polyline points="0,7 20,10 40,13 60,24 80,22 100,34" />
                   </svg>
                   <div className="ComparisonPage__chartMeta">
                     <span>4 hafta önce</span>
-                    <strong>Bugün · {comparisonPriceHistory.current}</strong>
+                    <strong>Bugün · {productPriceHistory.current}</strong>
                   </div>
                 </div>
               </section>

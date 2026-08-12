@@ -233,6 +233,11 @@
   font-weight: var(--font-weight-semibold);
 }
 
+.AssistantPage__context > p {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-small);
+}
+
 .AssistantPage__context dl div:nth-child(2) dd {
   color: var(--color-status-success-icon);
 }

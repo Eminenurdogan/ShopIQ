@@ -1,8 +1,12 @@
+import { NavLink } from 'react-router-dom'
 import { PageContainer } from '../../../../shared/ui/index.js'
-import { siteConfig } from '../../../../shared/config/index.js'
+import { APP_ROUTES, siteConfig } from '../../../../shared/config/index.js'
 import './SiteFooter.css'
 
-const legalLinks = ['Gizlilik', 'Kullanım Koşulları']
+const legalLinks = [
+  ['Gizlilik', APP_ROUTES.PRIVACY],
+  ['Kullanım Koşulları', APP_ROUTES.TERMS],
+]
 
 export function SiteFooter() {
   return (
@@ -15,9 +19,9 @@ export function SiteFooter() {
           </div>
           <nav aria-label="Yasal bağlantılar">
             <ul className="SiteFooter__links">
-              {legalLinks.map((label) => (
+              {legalLinks.map(([label, to]) => (
                 <li key={label}>
-                  <a href={`#${label.toLocaleLowerCase('tr-TR')}`}>{label}</a>
+                  <NavLink to={to}>{label}</NavLink>
                 </li>
               ))}
             </ul>

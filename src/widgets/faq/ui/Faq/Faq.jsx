@@ -10,7 +10,7 @@ const questions = [
   },
   {
     answer:
-      'MVP sürümünde ürün bağlantısı ile karşılaştırma yapılır. Kullanıcı hesabı oluşturmanız gerekmez.',
+      'Ürün karşılaştırmasını hesap oluşturmadan inceleyebilirsiniz. Demo hesap akışı ise takiplerinizi ve Dashboard deneyimini keşfetmenizi sağlar.',
     question: 'Karşılaştırma için hesap oluşturmam gerekir mi?',
   },
   {
@@ -20,12 +20,12 @@ const questions = [
   },
   {
     answer:
-      'Size uygun teklifi seçtiğinizde ilgili mağazaya yönlendirilirsiniz.',
+      'Tekliflerin fiyat, kargo ve mağaza güveni bilgilerini karşılaştırabilirsiniz. Mağaza yönlendirmeleri demo aşamasında açıkça belirtilir.',
     question: 'Bir teklif seçtiğimde ne olur?',
   },
   {
     answer:
-      'Fiyat alarmı ve takip özellikleri gelecekteki geliştirme planındadır; MVP kapsamına dahil değildir.',
+      'Dashboard üzerinden takip deneyimini, fiyat değişimlerini ve demo bildirimleri inceleyebilirsiniz. Gerçek bildirim servisi backend entegrasyonu ile eklenecektir.',
     question: 'Fiyat alarmı oluşturabilir miyim?',
   },
 ]

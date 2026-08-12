@@ -14,7 +14,7 @@ import {
   assistantMockResponseDelay,
   assistantQuickActions,
   assistantQuickPrompts,
-  assistantShoppingContext,
+  getAssistantShoppingContext,
   getMockAssistantResponse,
 } from '../../entities/assistant/model/assistantPrompts.js'
 import { APP_ROUTES } from '../../shared/config/index.js'
@@ -65,19 +65,22 @@ function AssistantLoading() {
   )
 }
 
-function ShoppingContext({ productName }) {
+function ShoppingContext({ context }) {
   return (
     <aside className="AssistantPage__context" aria-labelledby="shopping-context-title">
       <div>
         <span className="AssistantPage__eyebrow"><ShieldCheck aria-hidden="true" />Ürün bağlamı</span>
         <h2 id="shopping-context-title">Takip edilen ürün</h2>
       </div>
-      <strong>{productName}</strong>
+      <strong>{context.productName}</strong>
       <dl>
-        <div><dt>Güncel fiyat</dt><dd>{assistantShoppingContext.currentPrice}</dd></div>
-        <div><dt>Son fiyat değişimi</dt><dd>{assistantShoppingContext.lastChange}</dd></div>
-        <div><dt>Fiyat alarmı</dt><dd>{assistantShoppingContext.priceAlert}</dd></div>
+        <div><dt>Mağaza</dt><dd>{context.store}</dd></div>
+        <div><dt>Güncel fiyat</dt><dd>{context.currentPrice}</dd></div>
+        <div><dt>Önceki fiyat</dt><dd>{context.previousPrice}</dd></div>
+        <div><dt>Son fiyat değişimi</dt><dd>{context.lastChange}</dd></div>
+        <div><dt>Fiyat alarmı</dt><dd>{context.priceAlert}</dd></div>
       </dl>
+      <p>Bu ürün bağlamı demo verileriyle gösterilir.</p>
     </aside>
   )
 }
@@ -91,8 +94,9 @@ export function AssistantPage() {
   const [isLoading, setIsLoading] = useState(false)
   const [messages, setMessages] = useState([])
   const [question, setQuestion] = useState('')
+  const [retryQuestion, setRetryQuestion] = useState('')
   const productContext = readProductContext(searchParams)
-  const productName = productContext.productName || assistantShoppingContext.productName
+  const shoppingContext = getAssistantShoppingContext(productContext)
 
   useEffect(() => () => window.clearTimeout(responseTimerRef.current), [])
 
@@ -104,6 +108,7 @@ export function AssistantPage() {
     }
 
     setErrorMessage('')
+    setRetryQuestion('')
     setMessages((currentMessages) => [...currentMessages, { content: trimmedQuestion, role: 'user' }])
     setQuestion('')
     setIsLoading(true)
@@ -117,6 +122,7 @@ export function AssistantPage() {
         ])
       } catch {
         setErrorMessage('ShopIQ önerisini şu anda hazırlayamadı.')
+        setRetryQuestion(trimmedQuestion)
       } finally {
         setIsLoading(false)
       }
@@ -134,19 +140,47 @@ export function AssistantPage() {
 
   function handleRetry() {
     setErrorMessage('')
+    if (retryQuestion) {
+      sendQuestion(retryQuestion)
+      return
+    }
+
     inputRef.current?.focus()
   }
 
   function handleAction(action) {
-    if (action.id === 'comparison') {
-      navigate(buildProductContextUrl(APP_ROUTES.COMPARISON, {
-        productName,
+    const contextUrl = buildProductContextUrl(APP_ROUTES.COMPARISON, {
+      previousPrice: shoppingContext.previousPrice,
+      price: shoppingContext.currentPrice,
+      priceChange: shoppingContext.lastChange,
+      productName: shoppingContext.productName,
+      productUrl: productContext.productUrl,
+      store: shoppingContext.store,
+    })
+
+    if (action.id === 'history') {
+      navigate(`${contextUrl}#price-history`)
+      return
+    }
+
+    if (action.id === 'tracking') {
+      navigate(buildProductContextUrl(APP_ROUTES.TRACKING, {
+        previousPrice: shoppingContext.previousPrice,
+        price: shoppingContext.currentPrice,
+        priceChange: shoppingContext.lastChange,
+        productName: shoppingContext.productName,
         productUrl: productContext.productUrl,
+        store: shoppingContext.store,
       }))
       return
     }
 
-    handlePromptSelect(action.label)
+    if (action.id === 'alternatives') {
+      navigate(`${contextUrl}#comparison-product-form`)
+      return
+    }
+
+    navigate(contextUrl)
   }
 
   const hasConversation = messages.length > 0 || isLoading
@@ -210,7 +244,7 @@ export function AssistantPage() {
                 <Button disabled={!question.trim()} icon={<Send aria-hidden="true" />} isLoading={isLoading} type="submit">Gönder</Button>
               </form>
             </div>
-            <ShoppingContext productName={productName} />
+            <ShoppingContext context={shoppingContext} />
           </section>
         </PageContainer>
       </main>

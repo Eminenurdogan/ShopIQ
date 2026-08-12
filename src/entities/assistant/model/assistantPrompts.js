@@ -18,8 +18,21 @@ export const assistantQuickActions = [
 export const assistantShoppingContext = {
   currentPrice: '₺14.999',
   lastChange: '↓ %12',
+  previousPrice: '₺16.999',
   priceAlert: 'Aktif',
   productName: 'Dyson Airwrap',
+  store: 'Demo mağaza',
+}
+
+export function getAssistantShoppingContext(productContext) {
+  return {
+    currentPrice: productContext.price || assistantShoppingContext.currentPrice,
+    lastChange: productContext.priceChange || assistantShoppingContext.lastChange,
+    previousPrice: productContext.previousPrice || assistantShoppingContext.previousPrice,
+    priceAlert: assistantShoppingContext.priceAlert,
+    productName: productContext.productName || assistantShoppingContext.productName,
+    store: productContext.store || assistantShoppingContext.store,
+  }
 }
 
 export function getMockAssistantResponse(question) {
