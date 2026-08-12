@@ -14,9 +14,8 @@ const stats = [
 
 const quickActions = [
   [Plus, 'Yeni Ürün Takibi', APP_ROUTES.COMPARISON],
-  [ChartNoAxesCombined, 'Karşılaştırma Başlat', APP_ROUTES.COMPARISON],
-  [Bot, 'AI Analizi', APP_ROUTES.ASSISTANT],
-  [Heart, 'Favorilere Git'],
+  [ChartNoAxesCombined, 'Karşılaştırmayı Aç', APP_ROUTES.COMPARISON],
+  [Bot, 'AI’a Sor', APP_ROUTES.ASSISTANT],
 ]
 
 export function DashboardPage() {
@@ -32,7 +31,7 @@ export function DashboardPage() {
               <h1>Takiplerinde yeni fırsatlar var.</h1>
               <span>2 ürün indirime girdi, 3 fiyat değişikliği tespit edildi.</span>
             </div>
-            <Button icon={<Plus aria-hidden="true" />} onClick={() => navigate(APP_ROUTES.COMPARISON)}>Yeni ürün takibi</Button>
+            <Button icon={<Plus aria-hidden="true" />} onClick={() => navigate(APP_ROUTES.COMPARISON)}>Yeni Ürün Takibi</Button>
           </section>
           <section className="DashboardHome__actions" aria-label="Hızlı işlemler">
             {quickActions.map(([Icon, label, route]) => (

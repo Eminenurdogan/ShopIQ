@@ -1,4 +1,4 @@
-import { Bell, Bot, ChartNoAxesCombined, Heart, House, Menu, Search, Settings, X } from 'lucide-react'
+import { Bell, Bot, ChartNoAxesCombined, House, Menu, Search, X } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { APP_ROUTES, siteConfig } from '../../shared/config/index.js'
@@ -12,8 +12,6 @@ const items = [
   ['Ürün Takibi', APP_ROUTES.TRACKING, Bell],
   ['Karşılaştırmalar', APP_ROUTES.COMPARISON, ChartNoAxesCombined],
   ['AI Asistan', APP_ROUTES.ASSISTANT, Bot],
-  ['Favoriler', '#', Heart],
-  ['Ayarlar', '#', Settings],
 ]
 
 export function DashboardLayout({ children }) {
@@ -111,9 +109,9 @@ export function DashboardLayout({ children }) {
               variant="ghost"
             />
           </span>
-          <div className="DashboardLayout__search">
+          <div aria-label="Arama özelliği yakında" className="DashboardLayout__search">
             <Search aria-hidden="true" />
-            <span>Ürün, mağaza veya teklif ara</span>
+            <span>Arama yakında</span>
           </div>
           <Button aria-label="Bildirimler" icon={<Bell />} variant="ghost" />
           <span className="DashboardLayout__profile" aria-label="Profil alanı" />

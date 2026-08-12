@@ -93,6 +93,7 @@ export function ComparisonPage() {
   const [searchParams] = useSearchParams()
   const [activeFilter, setActiveFilter] = useState('all')
   const [activeSort, setActiveSort] = useState('total')
+  const [isStoreNoticeVisible, setIsStoreNoticeVisible] = useState(false)
   const productContext = readProductContext(searchParams)
   const productName = productContext.productName || comparisonProduct.name
   const visibleOffers = sortOffers(getFilteredOffers(activeFilter), activeSort)
@@ -138,6 +139,12 @@ export function ComparisonPage() {
             </StatusMessage>
           ) : null}
 
+          {isStoreNoticeVisible ? (
+            <StatusMessage type="info">
+              Mağaza bağlantısı demo aşamasında. Gerçek mağaza yönlendirmesi henüz kullanıma açık değil.
+            </StatusMessage>
+          ) : null}
+
           <section className="ComparisonPage__search" id="comparison-product-form" aria-labelledby="comparison-search-title">
             <div>
               <h2 id="comparison-search-title">Ürün bağlantısı ekle</h2>
@@ -174,7 +181,7 @@ export function ComparisonPage() {
                   <span className="ComparisonPage__badge"><BadgeCheck aria-hidden="true" />En İyi Teklif</span>
                   <h2 id="best-offer-title">{bestOffer.merchant}</h2>
                   <p>Toplam maliyet ve mağaza güvenine göre en avantajlı seçenek. Ücretsiz kargo ve stok bilgisi değerlendirmeye dahildir.</p>
-                  <Button icon={<PackagePlus aria-hidden="true" />} onClick={startTracking} variant="secondary">Ürünü Takibe Al</Button>
+                  <Button icon={<PackagePlus aria-hidden="true" />} onClick={startTracking} variant="secondary">Fiyatı Takip Et</Button>
                 </div>
                 <strong className="ComparisonPage__bestOfferPrice">{bestOffer.total}</strong>
               </section>
@@ -249,7 +256,13 @@ export function ComparisonPage() {
                         </div>
                         <footer className="ComparisonPage__offerFooter">
                           <span className="ComparisonPage__trust"><ShieldCheck aria-hidden="true" />{offer.trust} · {offer.updatedAt}</span>
-                          <Button icon={<ExternalLink aria-hidden="true" />} variant="secondary">Mağazaya Git</Button>
+                          <Button
+                            icon={<ExternalLink aria-hidden="true" />}
+                            onClick={() => setIsStoreNoticeVisible(true)}
+                            variant="secondary"
+                          >
+                            Mağaza Bağlantısı
+                          </Button>
                         </footer>
                       </article>
                     ))}
