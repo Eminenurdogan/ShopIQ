@@ -186,7 +186,7 @@ export function ComparisonPage() {
             </StatusMessage>
           ) : productContext.productUrl ? (
             <StatusMessage type="info">
-              Ürün bağlantısı alındı. Gerçek ürün analizi henüz bağlı olmadığı için demo karşılaştırma verisi gösteriliyor.
+              Ürün bağlantın alındı. Bu önizlemede fiyat, teklif ve takip deneyimini örnek veriler üzerinden inceleyebilirsin.
             </StatusMessage>
           ) : !productContext.productUrl ? (
             <StatusMessage type="info">

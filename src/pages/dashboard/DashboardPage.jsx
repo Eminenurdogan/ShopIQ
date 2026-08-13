@@ -6,10 +6,10 @@ import { DashboardLayout } from '../../widgets/dashboard-layout/DashboardLayout.
 import './DashboardPage.css'
 
 const stats = [
-  ['Takip edilen ürün', '12', Heart],
-  ['Aktif fiyat alarmı', '8', Bell],
-  ['Toplam karşılaştırma', '24', ChartNoAxesCombined],
-  ['Bugünkü fırsatlar', '3', TrendingDown],
+  ['Takip edilen ürünler', '12', Heart],
+  ['Fiyatı düşenler', '3', TrendingDown],
+  ['Aktif fırsatlar', '8', Bell],
+  ['Karşılaştırmalar', '24', ChartNoAxesCombined],
 ]
 
 const quickActions = [
@@ -29,7 +29,7 @@ export function DashboardPage() {
             <div>
               <p>Bugünkü özet</p>
               <h1>Takiplerinde yeni fırsatlar var.</h1>
-              <span>2 ürün indirime girdi, 3 fiyat değişikliği tespit edildi.</span>
+              <span>Dyson Airwrap ve Nike Air Max için fiyat hareketleri tespit edildi.</span>
             </div>
             <Button icon={<Plus aria-hidden="true" />} onClick={() => navigate(APP_ROUTES.COMPARISON)}>Yeni Ürün Takibi</Button>
           </section>
@@ -53,16 +53,16 @@ export function DashboardPage() {
           <section className="DashboardHome__grid">
             <article className="DashboardHome__panel">
               <h2>Son aktiviteler</h2>
-              <ul><li>iPhone fiyatı düştü</li><li>Nike ürününde fiyat değişti</li><li>Yeni kampanya tespit edildi</li></ul>
+              <ul><li>Dyson Airwrap fiyatı düştü</li><li>Nike Air Max için yeni fiyat hareketi var</li><li>Takip listende yeni fırsat tespit edildi</li></ul>
             </article>
             <article className="DashboardHome__panel DashboardHome__panel--insight">
               <Sparkles aria-hidden="true" />
               <h2>Akıllı içgörü</h2>
-              <p>Takip ettiğin teklifler arasında bugün öne çıkan fırsatlar var.</p>
+              <p>Dyson Airwrap için toplam maliyeti ve mağaza güvenini birlikte değerlendirmek faydalı görünüyor.</p>
             </article>
             <article className="DashboardHome__panel">
               <h2>Takip listesi</h2>
-              <p>Son güncellenen ürünlerin fiyat ve mağaza değişimlerini incele.</p>
+              <p>Dyson Airwrap, Apple AirPods Pro ve Nike Air Max için son fiyat hareketlerini incele.</p>
             </article>
           </section>
         </PageContainer>

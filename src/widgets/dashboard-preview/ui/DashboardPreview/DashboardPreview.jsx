@@ -5,10 +5,10 @@ import { Button, PageContainer } from '../../../../shared/ui/index.js'
 import './DashboardPreview.css'
 
 const previewItems = [
-  ['Takip edilen ürün', '12', BellRing],
-  ['Fiyat değişimi', '↓ %15', TrendingDown],
-  ['En iyi teklif', '₺20.499', ChartNoAxesCombined],
-  ['AI önerisi', 'Şimdi incele', Sparkles],
+  ['Takip edilen ürünler', '12', BellRing],
+  ['Fiyatı düşenler', '↓ %15', TrendingDown],
+  ['Aktif fırsatlar', '3 yeni fırsat', ChartNoAxesCombined],
+  ['AI içgörüsü', 'Kararı incele', Sparkles],
 ]
 
 export function DashboardPreview() {
@@ -21,13 +21,13 @@ export function DashboardPreview() {
           <div className="DashboardPreview__copy">
             <span>ShopIQ Dashboard</span>
             <h2 id="dashboard-preview-title">Alışveriş kararını tek yerden yönet.</h2>
-            <p>Takip ettiğin ürünleri, fiyat hareketlerini, karşılaştırmaları ve karar desteğini aynı uygulama deneyiminde bir araya getir.</p>
-            <Button onClick={() => navigate(APP_ROUTES.ONBOARDING)}>Dashboard’u Keşfet</Button>
+            <p>Takip ettiğin ürünleri, fiyatı düşenleri, aktif fırsatları, son hareketleri ve karar desteğini tek bir Dashboard üzerinden gör.</p>
+            <Button onClick={() => navigate(APP_ROUTES.DASHBOARD)}>Dashboard’u Keşfet</Button>
           </div>
           <div className="DashboardPreview__panel" aria-label="Dashboard demo önizlemesi">
             <div className="DashboardPreview__panelHeader">
-              <strong>Bugünkü özet</strong>
-              <span>Demo görünüm</span>
+              <strong>Bugünkü Dashboard özeti</strong>
+              <span>Canlı ürün deneyimi önizlemesi</span>
             </div>
             <div className="DashboardPreview__grid">
               {previewItems.map(([label, value, Icon]) => (

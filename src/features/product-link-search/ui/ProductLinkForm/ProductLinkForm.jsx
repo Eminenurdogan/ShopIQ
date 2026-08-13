@@ -7,7 +7,7 @@ import { productLinkDefaultValues } from '../../model/productLinkSchema.js'
 import { ProductLinkField } from '../ProductLinkField/ProductLinkField.jsx'
 import './ProductLinkForm.css'
 
-export function ProductLinkForm() {
+export function ProductLinkForm({ submitLabel = 'Ürünü Analiz Et' }) {
   const navigate = useNavigate()
   const {
     formState: { errors },
@@ -35,7 +35,7 @@ export function ProductLinkForm() {
           error={errorMessage}
           registration={register('productLink')}
         />
-        <Button type="submit">Ürünü Analiz Et</Button>
+        <Button type="submit">{submitLabel}</Button>
       </div>
       {errorMessage ? (
         <StatusMessage type="error">{errorMessage}</StatusMessage>

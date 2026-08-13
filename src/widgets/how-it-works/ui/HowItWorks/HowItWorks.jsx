@@ -3,10 +3,10 @@ import { PageContainer } from '../../../../shared/ui/index.js'
 import './HowItWorks.css'
 
 const steps = [
-  'Ürün linkini yapıştır.',
-  'Sistem ürünü analiz eder.',
-  'Mağazaları karşılaştırır.',
-  'En uygun mağazaya git.',
+  'Ürünün bağlantısını ekle.',
+  'Ürünü takip etmeye başla.',
+  'Fiyat değişimlerini ve fırsatları gör.',
+  'En uygun zamanda karar ver.',
 ]
 
 export function HowItWorks() {
@@ -15,7 +15,7 @@ export function HowItWorks() {
       <PageContainer>
         <div className="HowItWorks__heading">
           <h2 id="how-it-works-title">Nasıl çalışır?</h2>
-          <p>Karşılaştırma yolculuğu dört kısa adımda başlar.</p>
+          <p>ShopIQ ile alışveriş kararını dört sade adımda yönet.</p>
         </div>
         <ol className="HowItWorks__list">
           {steps.map((step, index) => (

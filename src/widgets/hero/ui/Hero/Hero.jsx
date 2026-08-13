@@ -1,10 +1,14 @@
+import { LayoutDashboard } from 'lucide-react'
 import { motion, useReducedMotion } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
 import logoImage from '../../../../assets/images/logo/shopiq-logo.png'
 import { ProductLinkForm } from '../../../../features/product-link-search/index.js'
-import { PageContainer } from '../../../../shared/ui/index.js'
+import { APP_ROUTES } from '../../../../shared/config/index.js'
+import { Button, PageContainer } from '../../../../shared/ui/index.js'
 import './Hero.css'
 
 export function Hero() {
+  const navigate = useNavigate()
   const shouldReduceMotion = useReducedMotion()
   const animation = shouldReduceMotion
     ? undefined
@@ -19,12 +23,18 @@ export function Hero() {
       <PageContainer>
         <motion.div className="Hero__content" {...animation}>
           <div className="Hero__copy">
-            <p className="Hero__eyebrow">İndirim takibi ve akıllı karşılaştırma</p>
-            <h1 className="Hero__title" id="hero-title">Beğendiğin ürünü takip et. Fiyat düştüğünde ilk sen öğren.</h1>
+            <p className="Hero__eyebrow">Ürün takibi · fiyat fırsatları · karar desteği</p>
+            <h1 className="Hero__title" id="hero-title">Ürünü bul. Takibe al. Doğru zamanda karar ver.</h1>
             <p className="Hero__description">
-              Tek ürün linkiyle fiyat hareketlerini, mağaza tekliflerini, satıcı güvenini, kargo ve kampanyaları tek ekranda izle. Akıllı öneriler kararını gerektiğinde destekler.
+              Ürün bağlantısını ekle; ShopIQ fiyat hareketlerini ve teklifleri senin için takip etsin. İndirim geldiğinde fırsatı kaçırmadan daha bilinçli karar ver.
             </p>
-            <div id="product-link-form"><ProductLinkForm /></div>
+            <div className="Hero__form" id="product-link-form">
+              <ProductLinkForm submitLabel="Ürünü Takip Et" />
+              <p>Bağlantını paylaş; demo deneyiminde ürün takibi, fiyat değişimi ve karşılaştırma akışını hemen incele.</p>
+            </div>
+            <Button icon={<LayoutDashboard aria-hidden="true" />} onClick={() => navigate(APP_ROUTES.DASHBOARD)} variant="secondary">
+              Dashboard’u Keşfet
+            </Button>
           </div>
           <div className="Hero__visual" aria-hidden="true">
             <div className="Hero__visualGlow" />

@@ -9,8 +9,8 @@ export function StoreShowcase() {
     <section aria-labelledby="store-showcase-title" className="StoreShowcase" id="platform">
       <PageContainer>
         <div className="StoreShowcase__heading">
-          <h2 id="store-showcase-title">Yakında desteklenecek mağazalar</h2>
-          <p>Yeni mağaza entegrasyonları için çalışıyoruz.</p>
+          <h2 id="store-showcase-title">Farklı teklifleri tek yerde değerlendir</h2>
+          <p>ShopIQ, birden fazla mağazadaki teklifleri karşılaştırma deneyiminde bir araya getirmek için tasarlanır. Mağaza bağlantıları demo aşamasında gösterilir.</p>
         </div>
         <div className="StoreShowcase__grid">
           {placeholderStores.map((store, index) => (

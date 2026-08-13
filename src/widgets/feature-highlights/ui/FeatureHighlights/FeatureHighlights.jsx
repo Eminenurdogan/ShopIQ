@@ -1,27 +1,27 @@
-import { BadgeCheck, Link2, ScanSearch, Timer } from 'lucide-react'
+import { BellRing, ChartNoAxesCombined, ScanSearch, Sparkles } from 'lucide-react'
 import { PageContainer } from '../../../../shared/ui/index.js'
 import './FeatureHighlights.css'
 
 const highlights = [
   {
-    description: 'Farklı mağazalardaki teklifleri tek bir karşılaştırma akışında görün.',
+    description: 'Beğendiğin ürünü takip et; fiyat düştüğünde ve yeni fırsat oluştuğunda zamanında haberdar ol.',
+    icon: BellRing,
+    title: 'İndirimleri Kaçırma',
+  },
+  {
+    description: 'Farklı mağazalardaki fiyat, kargo ve güven bilgilerini tek karşılaştırma akışında değerlendir.',
     icon: ScanSearch,
     title: 'Akıllı Karşılaştırma',
   },
   {
-    description: 'Ürün ve teklif bilgilerini daha bilinçli kararlar için birlikte değerlendirin.',
-    icon: BadgeCheck,
-    title: 'Güvenilir Sonuçlar',
+    description: 'Fiyat hareketlerini tek bakışta gör; ürünün uygun zamanı hakkında daha bilinçli karar ver.',
+    icon: ChartNoAxesCombined,
+    title: 'Fiyat Geçmişi',
   },
   {
-    description: 'Mağazaları tek tek gezmek yerine ihtiyacınız olan bilgiyi tek ekranda bulun.',
-    icon: Timer,
-    title: 'Zamandan Tasarruf',
-  },
-  {
-    description: 'Başlamak için yalnızca ürün bağlantısını paylaşmanız yeterli.',
-    icon: Link2,
-    title: 'Tek Link ile Analiz',
+    description: 'Fiyat, teklif ve takip verilerini değerlendirirken ihtiyaç duyduğunda karar desteği al.',
+    icon: Sparkles,
+    title: 'AI Alışveriş Desteği',
   },
 ]
 
@@ -30,8 +30,8 @@ export function FeatureHighlights() {
     <section aria-labelledby="feature-highlights-title" className="FeatureHighlights" id="features">
       <PageContainer>
         <div className="FeatureHighlights__heading">
-          <h2 id="feature-highlights-title">Daha sade bir alışveriş deneyimi</h2>
-          <p>ShopIQ, karşılaştırma sürecini daha anlaşılır hale getirir.</p>
+          <h2 id="feature-highlights-title">Fırsatları takip etmek artık daha kolay</h2>
+          <p>ShopIQ, ürün takibini, fiyat hareketlerini ve karşılaştırmayı tek karar akışında birleştirir.</p>
         </div>
         <div className="FeatureHighlights__grid">
           {highlights.map(({ description, icon: Icon, title }) => (

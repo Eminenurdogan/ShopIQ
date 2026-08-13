@@ -1,22 +1,22 @@
-import { ExternalLink, ShieldCheck, SlidersHorizontal } from 'lucide-react'
+import { BellRing, CircleDollarSign, LayoutDashboard } from 'lucide-react'
 import { PageContainer } from '../../../../shared/ui/index.js'
 import './Benefits.css'
 
 const benefits = [
   {
-    description: 'Teklifleri tek bir akışta inceleyerek karar sürecini sadeleştirin.',
-    icon: SlidersHorizontal,
-    title: 'Karşılaştırmayı merkezileştirin',
+    description: 'Her gün aynı ürünü kontrol etmek yerine fiyat hareketlerini ShopIQ üzerinden takip edin.',
+    icon: BellRing,
+    title: 'Sürekli fiyat kontrolü yapma',
   },
   {
-    description: 'Fiyat ve mağaza tekliflerini bir arada değerlendirerek daha bilinçli seçimler yapın.',
-    icon: ShieldCheck,
-    title: 'Kararınızı güvenle verin',
+    description: 'İndirimleri, fiyat değişimlerini ve yeni fırsatları tek merkezden görün.',
+    icon: CircleDollarSign,
+    title: 'Fırsatları kaçırma',
   },
   {
-    description: 'Teklifin toplam maliyetini, kargosunu ve mağaza güvenini birlikte değerlendirerek karar verin.',
-    icon: ExternalLink,
-    title: 'Doğru mağazayı değerlendirin',
+    description: 'Fiyat, kargo ve mağaza güvenini birlikte değerlendir; alışveriş kararını Dashboard’dan yönet.',
+    icon: LayoutDashboard,
+    title: 'Toplam maliyeti tek yerde gör',
   },
 ]
 
@@ -26,10 +26,9 @@ export function Benefits() {
       <PageContainer>
         <div className="Benefits__content">
           <div className="Benefits__heading">
-            <h2 id="benefits-title">Karar vermek daha kolay</h2>
+          <h2 id="benefits-title">Alışveriş takibini sana bırakmayan deneyim</h2>
             <p>
-              ShopIQ, doğru ürünü ve doğru mağazayı seçmeniz için ihtiyaç duyduğunuz
-              karşılaştırma, takip ve karar desteği deneyimini sunar.
+              ShopIQ, takip, fiyat fırsatları ve karşılaştırmayı tek akışta birleştirerek karar vermeyi sadeleştirir.
             </p>
           </div>
           <ul className="Benefits__list">

@@ -5,28 +5,33 @@ import './Faq.css'
 const questions = [
   {
     answer:
-      'Ürün bağlantısını paylaşın; ShopIQ aynı ürüne ait teklifleri karşılaştırma akışında bir araya getirir.',
-    question: 'ShopIQ nasıl çalışır?',
+      'ShopIQ; ürün takibi, fiyat değişimlerini görme, teklif karşılaştırma ve alışveriş karar desteğini aynı deneyimde bir araya getirir.',
+    question: 'ShopIQ ne işe yarar?',
   },
   {
     answer:
-      'Ürün karşılaştırmasını hesap oluşturmadan inceleyebilirsiniz. Demo hesap akışı ise takiplerinizi ve Dashboard deneyimini keşfetmenizi sağlar.',
-    question: 'Karşılaştırma için hesap oluşturmam gerekir mi?',
+      'Ürün bağlantısını ekledikten sonra ShopIQ ürünün fiyat hareketlerini ve teklifler arasındaki durumu takip deneyiminde gösterir.',
+    question: 'Ürün takibi nasıl çalışır?',
   },
   {
     answer:
-      'ShopIQ, karşılaştırma sonucunda ürün için uygun mağaza tekliflerini göstermek üzere tasarlanmıştır.',
-    question: 'ShopIQ hangi bilgileri karşılaştırır?',
+      'Dashboard üzerinde fiyatı düşen ürünleri, fırsatları ve demo bildirimleri görebilirsiniz. Gerçek bildirim servisi backend entegrasyonu ile çalışacaktır.',
+    question: 'Fiyat düştüğünde nasıl haberdar olurum?',
   },
   {
     answer:
-      'Tekliflerin fiyat, kargo ve mağaza güveni bilgilerini karşılaştırabilirsiniz. Mağaza yönlendirmeleri demo aşamasında açıkça belirtilir.',
-    question: 'Bir teklif seçtiğimde ne olur?',
+      'Evet. Tekliflerin ürün fiyatı, kargo ve mağaza güveni gibi bilgilerini tek ekranda karşılaştırabilirsiniz.',
+    question: 'Ürünleri karşılaştırabilir miyim?',
   },
   {
     answer:
-      'Dashboard üzerinden takip deneyimini, fiyat değişimlerini ve demo bildirimleri inceleyebilirsiniz. Gerçek bildirim servisi backend entegrasyonu ile eklenecektir.',
-    question: 'Fiyat alarmı oluşturabilir miyim?',
+      'Bu frontend deneyiminde mağaza bilgileri ve fiyat hareketleri demo verileriyle gösterilir. Gerçek mağaza entegrasyonları ayrıca bağlanacaktır.',
+    question: 'ShopIQ hangi mağazaları destekliyor?',
+  },
+  {
+    answer:
+      'AI Assistant, ürün fiyatı, teklif ve takip bağlamını daha bilinçli değerlendirmen için karar desteği sunar; ShopIQ’nun ana ürünü ürün takibi ve fırsat yönetimidir.',
+    question: 'AI Assistant ne işe yarıyor?',
   },
 ]
 
@@ -36,7 +41,7 @@ export function Faq() {
       <PageContainer>
         <div className="Faq__heading">
           <h2 id="faq-title">Sık sorulan sorular</h2>
-          <p>ShopIQ’nun temel karşılaştırma deneyimi hakkında kısa cevaplar.</p>
+          <p>ShopIQ’nun takip, fırsat ve karşılaştırma deneyimi hakkında kısa cevaplar.</p>
         </div>
         <div className="Faq__list">
           {questions.map(({ answer, question }) => (

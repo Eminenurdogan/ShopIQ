@@ -154,7 +154,7 @@ export function DashboardLayout({ children }) {
             </button>
             {isSearchOpen ? (
               <div className="DashboardLayout__panel" id="dashboard-search-panel">
-                <label className="DashboardLayout__panelLabel" htmlFor="dashboard-search">Demo aramada ara</label>
+                <label className="DashboardLayout__panelLabel" htmlFor="dashboard-search">ShopIQ demo içeriğinde ara</label>
                 <input autoFocus id="dashboard-search" onChange={(event) => setSearchTerm(event.target.value)} placeholder="Dashboard içeriğinde ara" type="search" value={searchTerm} />
                 <ul className="DashboardLayout__panelList">
                   {visibleSearchItems.map(([label, route]) => <li key={label}><button onClick={() => openRoute(route)} type="button">{label}</button></li>)}
@@ -177,11 +177,11 @@ export function DashboardLayout({ children }) {
             <Button aria-controls="dashboard-profile-panel" aria-expanded={isProfileOpen} aria-label="Profil menüsünü aç" icon={<CircleUserRound />} onClick={() => setIsProfileOpen((isOpen) => !isOpen)} variant="ghost" />
             {isProfileOpen ? (
               <div className="DashboardLayout__panel" id="dashboard-profile-panel">
-                <span className="DashboardLayout__panelLabel">Demo hesap</span>
+                <span className="DashboardLayout__panelLabel">ShopIQ hesap menüsü</span>
                 <ul className="DashboardLayout__panelList">
                   <li><button onClick={() => setTopBarNotice('Profil alanı demo aşamasında.') } type="button"><UserRound aria-hidden="true" />Profil</button></li>
                   <li><button onClick={() => setTopBarNotice('Ayarlar alanı demo aşamasında.') } type="button"><Settings aria-hidden="true" />Ayarlar</button></li>
-                  <li><button onClick={() => openRoute(APP_ROUTES.ONBOARDING)} type="button"><LogOut aria-hidden="true" />Çıkış Yap (Demo)</button></li>
+                  <li><button onClick={() => openRoute(APP_ROUTES.ONBOARDING)} type="button"><LogOut aria-hidden="true" />Çıkış Yap</button></li>
                 </ul>
               </div>
             ) : null}
